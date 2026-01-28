@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django stuff
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# If using Django collectstatic
+static/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# IDE / Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+.DS_Store
+docker-compose.override.yml
+
+# Byte-compiled / cache
+*.mo
+*.pot
+
+# Local settings
+local_settings.py
+
+# Env files
+*.env
+.env.*

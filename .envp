@@ -1,0 +1,21 @@
+DJANGO_ALLOWED_HOSTS=127.0.0.1,localhost
+DEBUG=True
+DEVELOPMENT_MODE=False
+#DB_CONNECTION=django.db.backends.postgresql
+DB_CONNECTION=django.db.backends.mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=appoint
+DB_USERNAME=ro2ot
+DB_PASSWORD=123456
+DB_ROOT_PASSWORD=123456
+SITE_ADMIN_URL=http://localhost:8001/
+FBL=False
+GL=True
+CURRENCY_LOCALE=en_IN
+CURRENCY_CODE=INR
+CURRENCY_LOCJS=en-IN
+SITE_URL=http://localhost:8001/
+####3 GOOGLE SIGN IN CLIENT ID
+GCI=588719478122-46jpuh0g3sdeflohe82bh012rvsft9g0.apps.googleusercontent.com
+EMAIL_ADMIN='info@gmail.com'

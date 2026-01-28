@@ -1,0 +1,39 @@
+services:
+  web:
+    build: .
+   
+    volumes:
+      - ./media:/app/media
+      - ./assets:/app/assets     # ✅ add this
+      - ./static:/app/static   
+    env_file:
+      - .env
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+    networks:
+      - shared_net  
+
+  db:
+    image: mysql:8.0.31
+    volumes:
+      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      TZ: "Asia/Kolkata"
+    ports:
+      - "3308:3306"
+    networks:
+      - shared_net  
+volumes:
+  db-data:
+networks:
+  shared_net:
+    name: shared_net
+

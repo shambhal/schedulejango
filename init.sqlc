@@ -1,0 +1,1240 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               8.0.31 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.3.0.6589
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- Dumping structure for table appoint.auth_group
+CREATE TABLE IF NOT EXISTS `auth_group` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) COLLATE utf32_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_group: 0 rows
+DELETE FROM `auth_group`;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.auth_group_permissions
+CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissions_group_id_b120cbf9` (`group_id`),
+  KEY `auth_group_permissions_permission_id_84c5c92e` (`permission_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_group_permissions: 0 rows
+DELETE FROM `auth_group_permissions`;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.auth_permission
+CREATE TABLE IF NOT EXISTS `auth_permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf32_bin NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) COLLATE utf32_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  KEY `auth_permission_content_type_id_2f476e4b` (`content_type_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=105 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_permission: 104 rows
+DELETE FROM `auth_permission`;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
+	(1, 'Can add log entry', 1, 'add_logentry'),
+	(2, 'Can change log entry', 1, 'change_logentry'),
+	(3, 'Can delete log entry', 1, 'delete_logentry'),
+	(4, 'Can view log entry', 1, 'view_logentry'),
+	(5, 'Can add user', 2, 'add_user'),
+	(6, 'Can change user', 2, 'change_user'),
+	(7, 'Can delete user', 2, 'delete_user'),
+	(8, 'Can view user', 2, 'view_user'),
+	(9, 'Can add permission', 3, 'add_permission'),
+	(10, 'Can change permission', 3, 'change_permission'),
+	(11, 'Can delete permission', 3, 'delete_permission'),
+	(12, 'Can view permission', 3, 'view_permission'),
+	(13, 'Can add group', 4, 'add_group'),
+	(14, 'Can change group', 4, 'change_group'),
+	(15, 'Can delete group', 4, 'delete_group'),
+	(16, 'Can view group', 4, 'view_group'),
+	(17, 'Can add content type', 5, 'add_contenttype'),
+	(18, 'Can change content type', 5, 'change_contenttype'),
+	(19, 'Can delete content type', 5, 'delete_contenttype'),
+	(20, 'Can view content type', 5, 'view_contenttype'),
+	(21, 'Can add session', 6, 'add_session'),
+	(22, 'Can change session', 6, 'change_session'),
+	(23, 'Can delete session', 6, 'delete_session'),
+	(24, 'Can view session', 6, 'view_session'),
+	(25, 'Can add category', 7, 'add_category'),
+	(26, 'Can change category', 7, 'change_category'),
+	(27, 'Can delete category', 7, 'delete_category'),
+	(28, 'Can view category', 7, 'view_category'),
+	(29, 'Can add Doctor Category Rating', 8, 'add_doctorcategoryrating'),
+	(30, 'Can change Doctor Category Rating', 8, 'change_doctorcategoryrating'),
+	(31, 'Can delete Doctor Category Rating', 8, 'delete_doctorcategoryrating'),
+	(32, 'Can view Doctor Category Rating', 8, 'view_doctorcategoryrating'),
+	(33, 'Can add doctor', 9, 'add_doctor'),
+	(34, 'Can change doctor', 9, 'change_doctor'),
+	(35, 'Can delete doctor', 9, 'delete_doctor'),
+	(36, 'Can view doctor', 9, 'view_doctor'),
+	(37, 'Can add Doctor_Category', 10, 'add_doctorcategory'),
+	(38, 'Can change Doctor_Category', 10, 'change_doctorcategory'),
+	(39, 'Can delete Doctor_Category', 10, 'delete_doctorcategory'),
+	(40, 'Can view Doctor_Category', 10, 'view_doctorcategory'),
+	(41, 'Can add Doctor Special Day Timings', 11, 'add_doctorspecial'),
+	(42, 'Can change Doctor Special Day Timings', 11, 'change_doctorspecial'),
+	(43, 'Can delete Doctor Special Day Timings', 11, 'delete_doctorspecial'),
+	(44, 'Can view Doctor Special Day Timings', 11, 'view_doctorspecial'),
+	(45, 'Can add faltu model', 12, 'add_faltumodel'),
+	(46, 'Can change faltu model', 12, 'change_faltumodel'),
+	(47, 'Can delete faltu model', 12, 'delete_faltumodel'),
+	(48, 'Can view faltu model', 12, 'view_faltumodel'),
+	(49, 'Can add book', 13, 'add_book'),
+	(50, 'Can change book', 13, 'change_book'),
+	(51, 'Can delete book', 13, 'delete_book'),
+	(52, 'Can view book', 13, 'view_book'),
+	(53, 'Can add Tax', 14, 'add_tax'),
+	(54, 'Can change Tax', 14, 'change_tax'),
+	(55, 'Can delete Tax', 14, 'delete_tax'),
+	(56, 'Can view Tax', 14, 'view_tax'),
+	(57, 'Can add config model', 15, 'add_configmodel'),
+	(58, 'Can change config model', 15, 'change_configmodel'),
+	(59, 'Can delete config model', 15, 'delete_configmodel'),
+	(60, 'Can view config model', 15, 'view_configmodel'),
+	(61, 'Can add information', 16, 'add_information'),
+	(62, 'Can change information', 16, 'change_information'),
+	(63, 'Can delete information', 16, 'delete_information'),
+	(64, 'Can view information', 16, 'view_information'),
+	(65, 'Can add book history', 17, 'add_bookhistory'),
+	(66, 'Can change book history', 17, 'change_bookhistory'),
+	(67, 'Can delete book history', 17, 'delete_bookhistory'),
+	(68, 'Can view book history', 17, 'view_bookhistory'),
+	(69, 'Can add customer', 18, 'add_customer'),
+	(70, 'Can change customer', 18, 'change_customer'),
+	(71, 'Can delete customer', 18, 'delete_customer'),
+	(72, 'Can view customer', 18, 'view_customer'),
+	(73, 'Can add cart', 19, 'add_cart'),
+	(74, 'Can change cart', 19, 'change_cart'),
+	(75, 'Can delete cart', 19, 'delete_cart'),
+	(76, 'Can view cart', 19, 'view_cart'),
+	(77, 'Can add payment', 20, 'add_payment'),
+	(78, 'Can change payment', 20, 'change_payment'),
+	(79, 'Can delete payment', 20, 'delete_payment'),
+	(80, 'Can view payment', 20, 'view_payment'),
+	(81, 'Can add cod', 21, 'add_cod'),
+	(82, 'Can change cod', 21, 'change_cod'),
+	(83, 'Can delete cod', 21, 'delete_cod'),
+	(84, 'Can view cod', 21, 'view_cod'),
+	(85, 'Can add paypal', 22, 'add_paypal'),
+	(86, 'Can change paypal', 22, 'change_paypal'),
+	(87, 'Can delete paypal', 22, 'delete_paypal'),
+	(88, 'Can view paypal', 22, 'view_paypal'),
+	(89, 'Can add order totals', 23, 'add_ordertotals'),
+	(90, 'Can change order totals', 23, 'change_ordertotals'),
+	(91, 'Can delete order totals', 23, 'delete_ordertotals'),
+	(92, 'Can view order totals', 23, 'view_ordertotals'),
+	(93, 'Can add order history', 24, 'add_orderhistory'),
+	(94, 'Can change order history', 24, 'change_orderhistory'),
+	(95, 'Can delete order history', 24, 'delete_orderhistory'),
+	(96, 'Can view order history', 24, 'view_orderhistory'),
+	(97, 'Can add order items', 25, 'add_orderitems'),
+	(98, 'Can change order items', 25, 'change_orderitems'),
+	(99, 'Can delete order items', 25, 'delete_orderitems'),
+	(100, 'Can view order items', 25, 'view_orderitems'),
+	(101, 'Can add order', 26, 'add_order'),
+	(102, 'Can change order', 26, 'change_order'),
+	(103, 'Can delete order', 26, 'delete_order'),
+	(104, 'Can view order', 26, 'view_order');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.auth_user
+CREATE TABLE IF NOT EXISTS `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) COLLATE utf32_bin NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) COLLATE utf32_bin NOT NULL,
+  `first_name` varchar(150) COLLATE utf32_bin NOT NULL,
+  `last_name` varchar(150) COLLATE utf32_bin NOT NULL,
+  `email` varchar(254) COLLATE utf32_bin NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_user: 22 rows
+DELETE FROM `auth_user`;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+	(1, 'pbkdf2_sha256$1000000$xNyHnHoMwyZeyxIgDHjS0K$bGkdcNDOB77k9EDqP4qNKEM5Bq+5EKfhjHC0NyVs5RQ=', NULL, 0, 'doctor1', 'Doctor1', 'LastName1', 'doctor1@hospital.com', 0, 1, '2025-06-15 08:10:00.487388'),
+	(2, 'pbkdf2_sha256$1000000$1FwyN8irOhfmnmr8aezsXz$8u8G7pH+Bc3PnU7P4d/a9u7ibejZxh/+1H5rkwRbsAs=', NULL, 0, 'doctor2', 'Doctor2', 'LastName2', 'doctor2@hospital.com', 0, 1, '2025-06-15 08:10:00.843180'),
+	(3, 'pbkdf2_sha256$1000000$4S7OaNBfvSuENqrarofmH5$I2ZdnZ5RD1yQ/YBrkJICFxGFdiRctktsFDwiHBecx9Y=', NULL, 0, 'doctor3', 'Doctor3', 'LastName3', 'doctor3@hospital.com', 0, 1, '2025-06-15 08:10:01.188750'),
+	(4, 'pbkdf2_sha256$1000000$uUO2lxBl64qyTSpFGn4poF$nEsBsZi+eJ59lcHtYWl910/Oc6wRS9wpZ4rtLKMwyDw=', NULL, 0, 'doctor4', 'Doctor4', 'LastName4', 'doctor4@hospital.com', 0, 1, '2025-06-15 08:10:01.541984'),
+	(5, 'pbkdf2_sha256$1000000$4mT68kTGlu945SldTCLdVW$BklHcYO2Pa+BpKxfQ1SRBeetYajLTtfTenwpxvACT2o=', NULL, 0, 'doctor5', 'Doctor5', 'LastName5', 'doctor5@hospital.com', 0, 1, '2025-06-15 08:10:01.894420'),
+	(6, 'pbkdf2_sha256$1000000$kuqKZSsr5qNK7NROS0TRQb$XYrkAlMkSmVZ1cYjnIjyB6Y0D1uiricKkcN5vq5BvDE=', NULL, 0, 'doctor6', 'Doctor6', 'LastName6', 'doctor6@hospital.com', 0, 1, '2025-06-15 08:10:02.260891'),
+	(7, 'pbkdf2_sha256$1000000$22yvAqUG9SRO6el0Prrvrs$7i9CDfd+oKkgXqYxfDgESXOXNY8jF9HqcE2CB6T5yyQ=', NULL, 0, 'doctor7', 'Doctor7', 'LastName7', 'doctor7@hospital.com', 0, 1, '2025-06-15 08:10:02.598271'),
+	(8, 'pbkdf2_sha256$1000000$s3Znz22dfnzu79dkh01tF6$gGUiUYQSLzGHa2UJYW/8XhRukVBkbgS/ScMR7GUlIUM=', NULL, 0, 'doctor8', 'Doctor8', 'LastName8', 'doctor8@hospital.com', 0, 1, '2025-06-15 08:10:02.949191'),
+	(9, 'pbkdf2_sha256$1000000$bCX29fb9VBOk1EzZo8kmKy$WutQLYmQb5AANFz+wdYJVWqtZ78/8M8HRO7wvF7GNGI=', NULL, 0, 'doctor9', 'Doctor9', 'LastName9', 'doctor9@hospital.com', 0, 1, '2025-06-15 08:10:03.299770'),
+	(10, 'pbkdf2_sha256$1000000$YESSzAKbI1Co14IcIDj6sq$456tBKlcbOKE54Q6+JB2JqU7CbNs8rml5sq6EhOmaNg=', NULL, 0, 'doctor10', 'Doctor10', 'LastName10', 'doctor10@hospital.com', 0, 1, '2025-06-15 08:10:03.635629'),
+	(27, 'pbkdf2_sha256$29000$71Nesj0UHhrB$2A2aKVWF4gYidsc5XJMimwWEQdEGgGlu/kCkmWgknkI=', NULL, 0, '', '', '', 'demo@gmail.com', 0, 0, '0000-00-00 00:00:00.000000'),
+	(28, 'pbkdf2_sha256$29000$2zaZDB6N9UN2$v+voq4TBoWmPpT+Q42EfXK7iDz3A9pcRrEsyzu1Jqag=', NULL, 0, 'sulekchauhan@gmail.com', 'sulekha', '', 'sulekchauhan@gmail.com', 0, 1, '0000-00-00 00:00:00.000000'),
+	(42, 'pbkdf2_sha256$1000000$KbJh7TtRQjnqA2MPUEXGDZ$gPEQwhmNxsda9ujEIn9Wmxf3lS4fQ1P72g12CmjEsUA=', NULL, 1, 'shambhal', '', '', 'shambhalnetworks@gmail.com', 1, 1, '2025-08-22 05:38:09.012946'),
+	(40, 'pbkdf2_sha256$29000$7CvZLLB3S6yy$YvzZqeZQ0LD5AWMzkjNl3WSDr9qDSFd1XOeuyZoHrSo=', NULL, 0, 'latamangesfhar@gmail.com', 'Lata', 'Mangeshkar', 'latamangesfhar@gmail.com', 0, 0, '2025-08-20 12:25:58.949319'),
+	(41, 'pbkdf2_sha256$29000$V8M1OBmFcIg7$fic/cvy1qN/OuV0CV1EG4SB+i0wLEvL8likELxskZb0=', NULL, 0, 'latamangeskhar@gmail.com', 'Lata', 'Mangeshkar', 'latamangeskhar@gmail.com', 0, 0, '2025-08-20 12:27:19.998931'),
+	(24, 'pbkdf2_sha256$1000000$0tsZDJEIiglqKCyTNVMJNq$5DYXwPzrrJZQGqFk1Erdtye1wS+ppqgt3/pT2un57NY=', NULL, 0, 'tedxcst@test.com', 'test', 'test', 'tedxcst@test.com', 0, 1, '2025-06-23 08:57:08.340727'),
+	(43, 'pbkdf2_sha256$1000000$y5fJAXFjE5ZYsZr7nYZ5O4$AWgP+nJdUYrrnmpUbhJLC3ZZDox5xcQmPADj8guEvs4=', '2025-09-12 08:10:44.932903', 1, 'admin', '', '', 'admin@gmail.com', 1, 1, '2025-08-22 06:04:45.849045'),
+	(49, 'pbkdf2_sha256$29000$i63HV7yfyvrP$FnJESzz0QvXHPl5PRdWF44qN86jgHGR3B5eV0+wqzfA=', NULL, 0, 'shambhalnetwor44gks@gmail.com', 'siddharth', '', 'shambhalnetwor44gks@gmail.com', 0, 0, '2025-09-10 15:06:44.361510'),
+	(50, 'pbkdf2_sha256$29000$zA57ltOE5v27$HY/HJArvvP4SiY9r0OHky2K78ifpKh+8VnZG8+qCYiI=', NULL, 0, 'shambhalne4twor44gks@gmail.com', 'siddharth', '', 'shambhalne4twor44gks@gmail.com', 0, 0, '2025-09-10 15:09:29.279259'),
+	(51, 'pbkdf2_sha256$29000$Hd5ZjfNsfiW8$s/7/XVuWVo3hK7pn4f9DZw944+75M6YoSHpiQe9g1no=', NULL, 0, 'siddharthsingh.chauhan@gmail.com', 'siddharth', '', 'siddharthsingh.chauhan@gmail.com', 0, 0, '2025-09-10 15:19:29.635236'),
+	(52, 'pbkdf2_sha256$29000$wroktP3fPtoS$rmKBSO7cpft8ccLaa25MzFtcjeaDXCdtR7gjqrjL5vc=', NULL, 0, 'siddharthsingh.dchauhan@gmail.com', 'sulekha', '', 'siddharthsingh.dchauhan@gmail.com', 0, 0, '2025-09-10 15:19:29.635236'),
+	(53, 'pbkdf2_sha256$29000$odWuqaEQE81F$mFgw54RkEOeeAHBS/8hWb53c/x7T8stSn+oD9JiameU=', NULL, 0, 'siddharthsingh.2chauhan@gmail.com', 'test', 'sulekha', 'siddharthsingh.2chauhan@gmail.com', 0, 0, '2025-09-10 16:24:07.236349');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.auth_user_groups
+CREATE TABLE IF NOT EXISTS `auth_user_groups` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_user_id_6a12ed8b` (`user_id`),
+  KEY `auth_user_groups_group_id_97559544` (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_user_groups: 0 rows
+DELETE FROM `auth_user_groups`;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.auth_user_user_permissions
+CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permissions_user_id_a95ead1b` (`user_id`),
+  KEY `auth_user_user_permissions_permission_id_1fbb5f2c` (`permission_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.auth_user_user_permissions: 0 rows
+DELETE FROM `auth_user_user_permissions`;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.cart_cart
+CREATE TABLE IF NOT EXISTS `cart_cart` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dated` date NOT NULL,
+  `slot` varchar(20) COLLATE utf32_bin NOT NULL,
+  `device_id` varchar(50) COLLATE utf32_bin NOT NULL,
+  `user_id` int NOT NULL,
+  `doctor_id` bigint NOT NULL,
+  `price` decimal(8,2) DEFAULT NULL,
+  `category_id` int DEFAULT NULL,
+  `category_name` varchar(50) COLLATE utf32_bin DEFAULT NULL,
+  `doctor_name` varchar(50) COLLATE utf32_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cart_cart_doctor_id_7f6a156f` (`doctor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=174 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.cart_cart: 43 rows
+DELETE FROM `cart_cart`;
+/*!40000 ALTER TABLE `cart_cart` DISABLE KEYS */;
+INSERT INTO `cart_cart` (`id`, `dated`, `slot`, `device_id`, `user_id`, `doctor_id`, `price`, `category_id`, `category_name`, `doctor_name`) VALUES
+	(1, '2025-07-10', '10:00-10:30', 'leb93djj3jdkdk', 0, 1, 20.00, NULL, NULL, NULL),
+	(2, '2025-07-15', '11:00-11:30', 'string', 0, 1, 500.00, NULL, NULL, NULL),
+	(58, '2025-07-16', '12:00-12:30', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(59, '2025-07-16', '12:00-12:30', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(60, '2025-07-16', '12:00-12:30', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(61, '2025-07-16', '12:00-12:30', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(62, '2025-07-16', '11:30-12:00', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(65, '2025-07-18', '13:30-14:00', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(66, '2025-07-18', '17:30-18:00', '8a68b4-4157-4001-973b-686d96ea', 0, 1, NULL, NULL, NULL, NULL),
+	(134, '2025-08-26', '11:30-12:00', '5f4430-26da-4f83-95ab-dc2af7e4', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(133, '2025-08-27', '13:30-14:00', 'e71ebc-80d0-488f-9079-d0dc29b5', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(132, '2025-08-27', '15:00-15:30', 'e71ebc-80d0-488f-9079-d0dc29b5', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(131, '2025-08-27', '12:00-12:30', 'e71ebc-80d0-488f-9079-d0dc29b5', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(130, '2025-08-27', '12:00-12:30', 'e71ebc-80d0-488f-9079-d0dc29b5', 0, 1, 500.00, 2, 'Surgery', ''),
+	(128, '2025-08-28', '13:00-13:30', '983dc2-75b2-4126-aad9-17dde608', 0, 1, 500.00, 2, 'Surgery', ''),
+	(129, '2025-08-27', '12:30-13:00', 'e71ebc-80d0-488f-9079-d0dc29b5', 0, 1, 500.00, 2, 'Surgery', ''),
+	(127, '2025-08-28', '12:30-13:00', '983dc2-75b2-4126-aad9-17dde608', 0, 1, 500.00, 2, '', ''),
+	(126, '2025-08-28', '12:00-12:30', '983dc2-75b2-4126-aad9-17dde608', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(136, '2025-08-28', '11:30-12:00', '5f4430-26da-4f83-95ab-dc2af7e4', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(152, '2025-09-04', '10:30-11:00', '7c3c47-6f42-4577-8cca-5b239b4e', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(151, '2025-09-04', '11:00-11:30', '84b678-1f91-4d43-bfa7-142ebeea', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(150, '2025-09-04', '13:00-13:30', 'e8d1a6-c097-43ce-a7a2-3dfcf930', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(149, '2025-09-03', '13:00-13:30', 'e8d1a6-c097-43ce-a7a2-3dfcf930', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(148, '2025-08-28', '11:30-12:00', 'fb023c-d50f-43f6-ba18-d027f2c9', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(147, '2025-08-28', '13:00-13:30', '8811cf-804e-44c6-a16e-2abf50ca', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(146, '2025-08-28', '13:30-14:00', '8811cf-804e-44c6-a16e-2abf50ca', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(145, '2025-08-28', '12:30-13:00', '0d18ce-6264-469b-954e-6a98c37c', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(153, '2025-09-04', '13:00-13:30', 'bf255c-5a68-42ee-801e-298c3bdf', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(154, '2025-09-04', '10:30-11:00', '44374d-34be-4fc7-9592-3b233b42', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(155, '2025-09-08', '12:30-13:00', '44374d-34be-4fc7-9592-3b233b42', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(156, '2025-09-08', '10:30-11:00', '099cbe-5d5c-4018-8718-d4fd4bf6', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(157, '2025-09-09', '12:00-12:30', 'e3e7c7-890f-4695-8be5-a2e4c798', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(158, '2025-09-09', '12:30-13:00', 'bc6e71-5fc7-400d-9e7b-747fff0f', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(159, '2025-09-11', '13:00-13:30', '17cd41-4ad0-40f1-aa84-16a36ac3', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(160, '2025-09-11', '12:00-12:30', '25c65e-589a-4991-bc75-f4a12f7a', 0, 3, 500.00, 3, 'Pediatrics', 'Doctor3 LastName3'),
+	(161, '2025-09-09', '17:00-17:30', 'eff14d-11f2-4aab-8703-0464cdff', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(162, '2025-09-10', '12:30-13:00', '5c2f2b-7564-4a8a-b10c-f3e5c722', 0, 5, 500.00, 5, 'Dermatology', 'Doctor5 LastName5'),
+	(163, '2025-09-10', '12:00-12:30', '814f7c-3a17-43fa-8f52-034ffd17', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(164, '2025-09-10', '11:00-11:30', 'f65aa8-ab61-42e3-9034-cfec1e74', 0, 4, 500.00, 5, 'Dermatology', 'Doctor4 LastName4'),
+	(165, '2025-09-11', '13:00-13:30', '40426f-cd82-4087-b8e4-203f98ca', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(166, '2025-09-11', '12:00-12:30', '2b1a31-21b6-4a7a-a000-56d11467', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2'),
+	(167, '2025-09-15', '12:00-12:30', '43fcd8-a077-482f-9854-49d379a2', 0, 1, 500.00, 2, 'Surgery', 'Sangeeta Meena'),
+	(170, '2025-09-15', '14:00-14:30', '50cbbd-45da-4635-ba74-f2dc126e', 0, 2, 500.00, 2, 'Surgery', 'Doctor2 LastName2');
+/*!40000 ALTER TABLE `cart_cart` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.category_category
+CREATE TABLE IF NOT EXISTS `category_category` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf32_bin NOT NULL,
+  `slug` varchar(100) COLLATE utf32_bin NOT NULL,
+  `description` longtext COLLATE utf32_bin,
+  `is_active` tinyint(1) NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `parent_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `slug` (`slug`),
+  KEY `category_category_parent_id_bce0763d` (`parent_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.category_category: 10 rows
+DELETE FROM `category_category`;
+/*!40000 ALTER TABLE `category_category` DISABLE KEYS */;
+INSERT INTO `category_category` (`id`, `name`, `slug`, `description`, `is_active`, `created_at`, `updated_at`, `parent_id`) VALUES
+	(1, 'General Medicine', 'general-medicine', 'Medical specialty in General Medicine', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', NULL),
+	(2, 'Surgery', 'surgery', 'Medical specialty in Surgery', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', NULL),
+	(3, 'Pediatrics', 'pediatrics', 'Medical specialty in Pediatrics', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', NULL),
+	(4, 'Cardiology', 'cardiology', 'Medical specialty in Cardiology', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', NULL),
+	(5, 'Dermatology', 'dermatology', 'Medical specialty in Dermatology', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', NULL),
+	(6, 'Cardiac Surgery', 'cardiac-surgery', 'Subspecialty in Cardiac Surgery', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', 2),
+	(7, 'Plastic Surgery', 'plastic-surgery', 'Subspecialty in Plastic Surgery', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', 2),
+	(8, 'Pediatric Cardiology', 'pediatric-cardiology', 'Subspecialty in Pediatric Cardiology', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', 4),
+	(9, 'Interventional Cardiology', 'interventional-cardiology', 'Subspecialty in Interventional Cardiology', 1, '2025-06-15 08:10:00.471397', '2025-06-15 08:10:00.471397', 4),
+	(10, 'Neonatal Care', 'neonatal-care', 'Subspecialty in Neonatal Care', 1, '2025-06-15 08:10:00.487388', '2025-06-15 08:10:00.487388', 3);
+/*!40000 ALTER TABLE `category_category` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.cod_cod
+CREATE TABLE IF NOT EXISTS `cod_cod` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL,
+  `sort_order` smallint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.cod_cod: 1 rows
+DELETE FROM `cod_cod`;
+/*!40000 ALTER TABLE `cod_cod` DISABLE KEYS */;
+INSERT INTO `cod_cod` (`id`, `status`, `sort_order`) VALUES
+	(1, 1, 1);
+/*!40000 ALTER TABLE `cod_cod` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.config_configmodel
+CREATE TABLE IF NOT EXISTS `config_configmodel` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `cname` varchar(20) COLLATE utf32_bin NOT NULL,
+  `cvalue` varchar(20) COLLATE utf32_bin NOT NULL,
+  `cgroup` varchar(20) COLLATE utf32_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.config_configmodel: 0 rows
+DELETE FROM `config_configmodel`;
+/*!40000 ALTER TABLE `config_configmodel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `config_configmodel` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.customer_customer
+CREATE TABLE IF NOT EXISTS `customer_customer` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `phone` varchar(20) COLLATE utf32_bin DEFAULT NULL,
+  `access` varchar(150) COLLATE utf32_bin DEFAULT NULL,
+  `refresh` varchar(150) COLLATE utf32_bin DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.customer_customer: 21 rows
+DELETE FROM `customer_customer`;
+/*!40000 ALTER TABLE `customer_customer` DISABLE KEYS */;
+INSERT INTO `customer_customer` (`id`, `phone`, `access`, `refresh`, `user_id`) VALUES
+	(10, '486783838', NULL, NULL, 34),
+	(9, '486783838', NULL, NULL, 33),
+	(8, '486783838', NULL, NULL, 32),
+	(7, '486783838', NULL, NULL, 31),
+	(11, '486783838', NULL, NULL, 35),
+	(12, '486783838', NULL, NULL, 36),
+	(13, '486783838', NULL, NULL, 37),
+	(14, '486783838', NULL, NULL, 38),
+	(15, '486783838', NULL, NULL, 39),
+	(16, '486783838', NULL, NULL, 40),
+	(17, '486783838', NULL, NULL, 41),
+	(18, '451214512', NULL, NULL, 44),
+	(19, '8788885558', NULL, NULL, 45),
+	(20, '8788885558', NULL, NULL, 46),
+	(21, '8788885558', NULL, NULL, 47),
+	(22, '8788885558', NULL, NULL, 48),
+	(23, '8788885558', NULL, NULL, 49),
+	(24, '8788885558', NULL, NULL, 50),
+	(25, '451214512', NULL, NULL, 51),
+	(26, '09828302419', NULL, NULL, 52),
+	(27, '09828302419', NULL, NULL, 53);
+/*!40000 ALTER TABLE `customer_customer` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.django_admin_log
+CREATE TABLE IF NOT EXISTS `django_admin_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext COLLATE utf32_bin,
+  `object_repr` varchar(200) COLLATE utf32_bin NOT NULL,
+  `action_flag` smallint unsigned NOT NULL,
+  `change_message` longtext COLLATE utf32_bin NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6` (`user_id`),
+  CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.django_admin_log: 12 rows
+DELETE FROM `django_admin_log`;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+	(1, '2025-06-19 05:44:09.179779', '1', 'Dr. Sangeeta Meena', 2, '[{"changed": {"fields": ["First name", "Last name", "Gender"]}}]', 9, 11),
+	(2, '2025-06-19 05:44:34.398312', '10', 'Dr. Amar Kantak', 2, '[{"changed": {"fields": ["First name", "Last name"]}}]', 9, 11),
+	(3, '2025-06-23 08:36:41.454561', '13', 'm@gmail.com', 3, '', 2, 11),
+	(4, '2025-06-23 08:36:41.454561', '15', 'test@test.com', 3, '', 2, 11),
+	(5, '2025-06-23 08:36:41.454561', '14', 'yu5@gmail.com', 3, '', 2, 11),
+	(6, '2025-06-24 10:41:21.930269', '2', 'Amar Kantak 2025-06-27', 1, '[{"added": {}}]', 11, 11),
+	(7, '2025-06-27 08:47:56.659951', '1', 'GST ', 1, '[{"added": {}}]', 14, 11),
+	(8, '2025-07-07 05:00:25.865940', '1', 'Siddharth Singh Chauhan-2025-07-08-11:00-11:30', 1, '[{"added": {}}]', 13, 11),
+	(9, '2025-07-07 13:47:10.686088', '1', 'Sangeeta Meena 2025-07-08', 2, '[{"changed": {"fields": ["Sdate"]}}]', 11, 11),
+	(10, '2025-08-22 06:46:27.246926', '1', 'Cash on Delivery', 2, '[{"changed": {"fields": ["Title", "Status"]}}]', 20, 43),
+	(11, '2025-08-22 06:46:52.547220', '2', 'Paypal', 2, '[{"changed": {"fields": ["Title", "Status"]}}]', 20, 43),
+	(12, '2025-08-22 06:50:43.740465', '1', 'Paypal ', 1, '[{"added": {}}]', 22, 43);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.django_content_type
+CREATE TABLE IF NOT EXISTS `django_content_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) COLLATE utf32_bin NOT NULL,
+  `model` varchar(100) COLLATE utf32_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.django_content_type: 26 rows
+DELETE FROM `django_content_type`;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
+	(1, 'admin', 'logentry'),
+	(2, 'auth', 'user'),
+	(3, 'auth', 'permission'),
+	(4, 'auth', 'group'),
+	(5, 'contenttypes', 'contenttype'),
+	(6, 'sessions', 'session'),
+	(7, 'category', 'category'),
+	(8, 'doctor', 'doctorcategoryrating'),
+	(9, 'doctor', 'doctor'),
+	(10, 'doctor', 'doctorcategory'),
+	(11, 'doctor', 'doctorspecial'),
+	(12, 'fm', 'faltumodel'),
+	(13, 'doctor', 'book'),
+	(14, 'taxes', 'tax'),
+	(15, 'config', 'configmodel'),
+	(16, 'information', 'information'),
+	(17, 'doctor', 'bookhistory'),
+	(18, 'customer', 'customer'),
+	(19, 'cart', 'cart'),
+	(20, 'payment', 'payment'),
+	(21, 'cod', 'cod'),
+	(22, 'paypal', 'paypal'),
+	(23, 'orders', 'ordertotals'),
+	(24, 'orders', 'orderhistory'),
+	(25, 'orders', 'orderitems'),
+	(26, 'orders', 'order');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.django_migrations
+CREATE TABLE IF NOT EXISTS `django_migrations` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) COLLATE utf32_bin NOT NULL,
+  `name` varchar(255) COLLATE utf32_bin NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.django_migrations: 35 rows
+DELETE FROM `django_migrations`;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
+	(1, 'contenttypes', '0001_initial', '2025-06-15 06:09:41.858126'),
+	(2, 'auth', '0001_initial', '2025-06-15 06:09:42.650680'),
+	(3, 'admin', '0001_initial', '2025-06-15 06:09:42.960999'),
+	(4, 'admin', '0002_logentry_remove_auto_add', '2025-06-15 06:09:42.968231'),
+	(5, 'admin', '0003_logentry_add_action_flag_choices', '2025-06-15 06:09:42.973525'),
+	(6, 'contenttypes', '0002_remove_content_type_name', '2025-06-15 06:09:43.068211'),
+	(7, 'auth', '0002_alter_permission_name_max_length', '2025-06-15 06:09:43.118449'),
+	(8, 'auth', '0003_alter_user_email_max_length', '2025-06-15 06:09:43.161437'),
+	(9, 'auth', '0004_alter_user_username_opts', '2025-06-15 06:09:43.164825'),
+	(10, 'auth', '0005_alter_user_last_login_null', '2025-06-15 06:09:43.211213'),
+	(11, 'auth', '0006_require_contenttypes_0002', '2025-06-15 06:09:43.216245'),
+	(12, 'auth', '0007_alter_validators_add_error_messages', '2025-06-15 06:09:43.219921'),
+	(13, 'auth', '0008_alter_user_username_max_length', '2025-06-15 06:09:43.270479'),
+	(14, 'auth', '0009_alter_user_last_name_max_length', '2025-06-15 06:09:43.321367'),
+	(15, 'auth', '0010_alter_group_name_max_length', '2025-06-15 06:09:43.363192'),
+	(16, 'auth', '0011_update_proxy_permissions', '2025-06-15 06:09:43.371262'),
+	(17, 'auth', '0012_alter_user_first_name_max_length', '2025-06-15 06:09:43.419615'),
+	(18, 'category', '0001_initial', '2025-06-15 06:09:43.511518'),
+	(19, 'doctor', '0001_initial', '2025-06-15 06:10:35.446191'),
+	(20, 'sessions', '0001_initial', '2025-06-15 06:10:35.538396'),
+	(21, 'doctor', '0002_remove_doctor_consultation_fee_doctor_categories_and_more', '2025-06-15 07:21:32.212914'),
+	(22, 'doctor', '0003_remove_doctor_address_remove_doctor_city_and_more', '2025-06-22 14:08:59.308113'),
+	(23, 'fm', '0001_initial', '2025-06-22 14:08:59.346126'),
+	(24, 'doctor', '0004_book', '2025-06-24 08:39:30.080274'),
+	(25, 'config', '0001_initial', '2025-06-27 08:39:34.939298'),
+	(26, 'taxes', '0001_initial', '2025-06-27 08:47:07.210984'),
+	(27, 'information', '0001_initial', '2025-06-27 11:05:54.578851'),
+	(28, 'doctor', '0005_bookhistory', '2025-07-09 10:04:31.797776'),
+	(29, 'cart', '0001_initial', '2025-07-09 10:04:31.918202'),
+	(30, 'customer', '0001_initial', '2025-07-09 10:04:31.977687'),
+	(31, 'cod', '0001_initial', '2025-08-22 06:36:47.980374'),
+	(32, 'cod', '0002_cod_sort_order', '2025-08-22 06:36:48.135368'),
+	(33, 'payment', '0001_initial', '2025-08-22 06:36:48.150351'),
+	(34, 'paypal', '0001_initial', '2025-08-22 06:44:57.128564'),
+	(35, 'orders', '0001_initial', '2025-08-23 06:55:21.266531');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.django_session
+CREATE TABLE IF NOT EXISTS `django_session` (
+  `session_key` varchar(40) COLLATE utf32_bin NOT NULL,
+  `session_data` longtext COLLATE utf32_bin NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.django_session: 7 rows
+DELETE FROM `django_session`;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+	('uwulz3m68qjopvunekd4pllcpv9a8qzn', '.eJxVjMsOwiAQRf-FtSEd3rh07zeQAQapGkhKuzL-uzbpQrf3nHNfLOC21rANWsKc2ZkBsNPvGDE9qO0k37HdOk-9rcsc-a7wgw5-7Zmel8P9O6g46rcunoQS5AQkoY0WmHzxuWTpiMiCRjQeSFqlU1ZkLPjoJkWSJgk6lsTeHw3ROEI:1uQiwC:cGbW80gL3BpMTB2l6Dgb9lVBAo0TbMarRcZZ-niR0mE', '2025-06-29 08:42:00.115100'),
+	('d28qn88io5tts32p8mk0hye0ny1z8v8a', '.eJxVjMsOwiAQRf-FtSEd3rh07zeQAQapGkhKuzL-uzbpQrf3nHNfLOC21rANWsKc2ZkBsNPvGDE9qO0k37HdOk-9rcsc-a7wgw5-7Zmel8P9O6g46rcunoQS5AQkoY0WmHzxuWTpiMiCRjQeSFqlU1ZkLPjoJkWSJgk6lsTeHw3ROEI:1uSWsp:6G6tBvJ4apTlxwAo0yQdmTa9oxUMGbfmqZ03oyaNdE0', '2025-07-04 08:13:59.065340'),
+	('k6lqdbqzsyo5ms8215jqoudxob6dpl8q', '.eJxVjMsOwiAQRf-FtSEd3rh07zeQAQapGkhKuzL-uzbpQrf3nHNfLOC21rANWsKc2ZkBsNPvGDE9qO0k37HdOk-9rcsc-a7wgw5-7Zmel8P9O6g46rcunoQS5AQkoY0WmHzxuWTpiMiCRjQeSFqlU1ZkLPjoJkWSJgk6lsTeHw3ROEI:1uURXE:yUPAWDEJVj10Dj5WPKR9uuXOqvvgIJQBYjhv8gMyCbA', '2025-07-09 14:55:36.148113'),
+	('eye40rsi9igal475drwfh6rgki7v4gpj', '.eJxVjMsOwiAQRf-FtSEd3rh07zeQAQapGkhKuzL-uzbpQrf3nHNfLOC21rANWsKc2ZkBsNPvGDE9qO0k37HdOk-9rcsc-a7wgw5-7Zmel8P9O6g46rcunoQS5AQkoY0WmHzxuWTpiMiCRjQeSFqlU1ZkLPjoJkWSJgk6lsTeHw3ROEI:1uURb2:gsneJgNUJ_USfTNyC8N7_WkCJ4rlUhVNzN13JhwuPzI', '2025-07-09 14:59:32.784296'),
+	('2jyk1g5ifbpfhs5g29dhko1g0oi9553s', '.eJxVjMsOwiAQRf-FtSEd3rh07zeQAQapGkhKuzL-uzbpQrf3nHNfLOC21rANWsKc2ZkBsNPvGDE9qO0k37HdOk-9rcsc-a7wgw5-7Zmel8P9O6g46rcunoQS5AQkoY0WmHzxuWTpiMiCRjQeSFqlU1ZkLPjoJkWSJgk6lsTeHw3ROEI:1uXvOL:qp37fZHAM6wtqDLt5wBf_H2USdfGs8sfA7gc0X-oCM8', '2025-07-19 05:24:49.386018'),
+	('b752xzzd4t6edygmlqpeqb03sn0y0wio', '.eJxVjMsOwiAQRf-FtSHQTnm4dO83kIFhpGogKe3K-O_apAvd3nPOfYmA21rC1vMSZhJnAaM4_Y4R0yPXndAd663J1Oq6zFHuijxol9dG-Xk53L-Dgr18a0yT83YYHI-GfHSJRpUnjsohMKFmZZwGrRGQrWHMFqy3QGC8YbBJvD8Q_Tgi:1upKve:38q9afqKxdP_y1TPFvBre2CwSWMc6zCZMp8WDGs3oyo', '2025-09-05 06:07:10.156174'),
+	('r45xy7ac6lhqhw8ezdjcpyi5c32nfes2', '.eJxVjMsOwiAQRf-FtSHQTnm4dO83kIFhpGogKe3K-O_apAvd3nPOfYmA21rC1vMSZhJnAaM4_Y4R0yPXndAd663J1Oq6zFHuijxol9dG-Xk53L-Dgr18a0yT83YYHI-GfHSJRpUnjsohMKFmZZwGrRGQrWHMFqy3QGC8YbBJvD8Q_Tgi:1uwyrk:obz2yNkzYsOt97P2gAmuhsSVK3mqtehGOkJK49SyY20', '2025-09-26 08:10:44.937993');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_book
+CREATE TABLE IF NOT EXISTS `doctor_book` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dated` date NOT NULL,
+  `slot` varchar(20) COLLATE utf32_bin NOT NULL,
+  `desc` longtext COLLATE utf32_bin NOT NULL,
+  `name` varchar(60) COLLATE utf32_bin NOT NULL,
+  `phone` varchar(15) COLLATE utf32_bin NOT NULL,
+  `order_id` int NOT NULL,
+  `email` varchar(150) COLLATE utf32_bin NOT NULL,
+  `status` varchar(15) COLLATE utf32_bin NOT NULL,
+  `device_id` varchar(150) COLLATE utf32_bin NOT NULL,
+  `user_id` int NOT NULL,
+  `order_item_id` int NOT NULL,
+  `extra_info` longtext COLLATE utf32_bin NOT NULL,
+  `doctor_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique2_booking` (`dated`,`doctor_id`,`slot`,`status`),
+  KEY `doctor_book_doctor_id_1eda4f0b` (`doctor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_book: 5 rows
+DELETE FROM `doctor_book`;
+/*!40000 ALTER TABLE `doctor_book` DISABLE KEYS */;
+INSERT INTO `doctor_book` (`id`, `dated`, `slot`, `desc`, `name`, `phone`, `order_id`, `email`, `status`, `device_id`, `user_id`, `order_item_id`, `extra_info`, `doctor_id`) VALUES
+	(1, '2025-07-08', '11:00-11:30', 'Prominent Appointment', 'Siddharth Singh Chauhan', '9785891579', 0, 'demo@gmail.com', 'BOOKED', '', 1, 0, 'khushkismati', 1),
+	(2, '2025-09-15', '13:30-14:00', 'Appointment', 'siddharth ', '451214512', 132, 'siddharthsingh.chauhan@gmail.com', 'BOOKED', '0c56db-4c2c-4a71-9bbd-6362be7b', 0, 179, '', 3),
+	(3, '2025-09-15', '14:00-14:30', 'Sangeeta Meena - Surgery', 'siddharth ', '451214512', 132, 'siddharthsingh.chauhan@gmail.com', 'BOOKED', '0c56db-4c2c-4a71-9bbd-6362be7b', 0, 180, '', 1),
+	(4, '2025-09-16', '15:00-15:30', 'Sangeeta Meena - Surgery', 'siddharth ', '451214512', 137, 'siddharthsingh.chauhan@gmail.com', 'BOOKED', 'beaa5f-dea4-481c-8dec-4c29fd2a', 0, 186, '', 1),
+	(5, '2025-09-16', '15:00-15:30', 'Sangeeta Meena - Surgery', 'sulekha', '09828302419', 135, 'siddharthsingh.chauhan@gmail.com', 'DECLINED', 'beaa5f-dea4-481c-8dec-4c29fd2a', 0, 184, '', 1);
+/*!40000 ALTER TABLE `doctor_book` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_bookhistory
+CREATE TABLE IF NOT EXISTS `doctor_bookhistory` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dated` date NOT NULL,
+  `status` varchar(20) COLLATE utf32_bin NOT NULL,
+  `info` longtext COLLATE utf32_bin NOT NULL,
+  `book_id_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `doctor_bookhistory_book_id_id_13a9d7cd` (`book_id_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_bookhistory: 0 rows
+DELETE FROM `doctor_bookhistory`;
+/*!40000 ALTER TABLE `doctor_bookhistory` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doctor_bookhistory` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_doctor
+CREATE TABLE IF NOT EXISTS `doctor_doctor` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) COLLATE utf32_bin NOT NULL,
+  `last_name` varchar(50) COLLATE utf32_bin NOT NULL,
+  `email` varchar(100) COLLATE utf32_bin NOT NULL,
+  `phone` varchar(20) COLLATE utf32_bin NOT NULL,
+  `gender` varchar(1) COLLATE utf32_bin NOT NULL,
+  `image` varchar(100) COLLATE utf32_bin NOT NULL,
+  `bio` longtext COLLATE utf32_bin NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `is_verified` tinyint(1) NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `user_id` int NOT NULL,
+  `friday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'10:00-18:00#500'),
+  `license_number` varchar(50) COLLATE utf32_bin NOT NULL,
+  `monday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'10:00-18:00#500'),
+  `off` longtext COLLATE utf32_bin NOT NULL,
+  `qualification` longtext COLLATE utf32_bin NOT NULL,
+  `saturday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'00:00-00:00#0'),
+  `slot` int NOT NULL,
+  `specialization` varchar(100) COLLATE utf32_bin NOT NULL,
+  `sunday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'00:00-00:00#0'),
+  `thursday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'10:00-18:00#500'),
+  `tuesday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'10:00-18:00#500'),
+  `wednesday` longtext COLLATE utf32_bin NOT NULL DEFAULT (_utf8mb4'10:00-18:00#500'),
+  `years_of_experience` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `user_id` (`user_id`),
+  CONSTRAINT `doctor_doctor_chk_1` CHECK ((`years_of_experience` >= 0))
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_doctor: 11 rows
+DELETE FROM `doctor_doctor`;
+/*!40000 ALTER TABLE `doctor_doctor` DISABLE KEYS */;
+INSERT INTO `doctor_doctor` (`id`, `first_name`, `last_name`, `email`, `phone`, `gender`, `image`, `bio`, `is_active`, `is_verified`, `created_at`, `updated_at`, `user_id`, `friday`, `license_number`, `monday`, `off`, `qualification`, `saturday`, `slot`, `specialization`, `sunday`, `thursday`, `tuesday`, `wednesday`, `years_of_experience`) VALUES
+	(1, 'Sangeeta', 'Meena', 'doctor1@hospital.com', '+91-9000000000', 'F', 'catalog/IMG_20190625_165249_HDR.jpg', 'Experienced doctor specializing in Internal Medicine', 1, 1, '2025-06-15 08:10:03.988430', '2025-06-23 13:50:30.608893', 1, '10:00-18:00#500', 'MED10000', '10:00-18:00#500', '', 'MBBS, MD in Internal Medicine', '00:00-00:00#0', 1800, 'Internal Medicine', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 1),
+	(2, 'Doctor2', 'LastName2', 'doctor2@hospital.com', '+91-9000000001', 'F', '', 'Experienced doctor specializing in Cardiology', 1, 1, '2025-06-15 08:10:03.988430', '2025-06-15 08:10:03.988430', 2, '10:00-18:00#500', 'MED10001', '10:00-18:00#500', '', 'MBBS, MD in Cardiology', '00:00-00:00#0', 1800, 'Cardiology', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 2),
+	(3, 'Doctor3', 'LastName3', 'doctor3@hospital.com', '+91-9000000002', 'M', '', 'Experienced doctor specializing in Pediatrics', 1, 1, '2025-06-15 08:10:03.988430', '2025-06-15 08:10:03.988430', 3, '10:00-18:00#500', 'MED10002', '10:00-18:00#500', '', 'MBBS, MD in Pediatrics', '00:00-00:00#0', 1800, 'Pediatrics', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 3),
+	(4, 'Doctor4', 'LastName4', 'doctor4@hospital.com', '+91-9000000003', 'F', '', 'Experienced doctor specializing in Surgery', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-15 08:10:04.004463', 4, '10:00-18:00#500', 'MED10003', '10:00-18:00#500', '', 'MBBS, MD in Surgery', '00:00-00:00#0', 1800, 'Surgery', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 4),
+	(5, 'Doctor5', 'LastName5', 'doctor5@hospital.com', '+91-9000000004', 'M', '', 'Experienced doctor specializing in Dermatology', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-15 08:10:04.004463', 5, '10:00-18:00#500', 'MED10004', '10:00-18:00#500', '', 'MBBS, MD in Dermatology', '00:00-00:00#0', 1800, 'Dermatology', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 5),
+	(6, 'Doctor6', 'LastName6', 'doctor6@hospital.com', '+91-9000000005', 'F', '', 'Experienced doctor specializing in Neurology', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-15 08:10:04.004463', 6, '10:00-18:00#500', 'MED10005', '10:00-18:00#500', '', 'MBBS, MD in Neurology', '00:00-00:00#0', 1800, 'Neurology', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 6),
+	(7, 'Doctor7', 'LastName7', 'doctor7@hospital.com', '+91-9000000006', 'M', '', 'Experienced doctor specializing in Orthopedics', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-15 08:10:04.004463', 7, '10:00-18:00#500', 'MED10006', '10:00-18:00#500', '', 'MBBS, MD in Orthopedics', '00:00-00:00#0', 1800, 'Orthopedics', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 7),
+	(8, 'Doctor8', 'LastName8', 'doctor8@hospital.com', '+91-9000000007', 'F', '', 'Experienced doctor specializing in Internal Medicine', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-15 08:10:04.004463', 8, '10:00-18:00#500', 'MED10007', '10:00-18:00#500', '', 'MBBS, MD in Internal Medicine', '00:00-00:00#0', 1800, 'Internal Medicine', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 8),
+	(9, 'Vegvati', 'Radha', 'doctor9@hospital.com', '+91-9000000008', 'M', 'catalog/durga2.jpeg', 'Experienced doctor specializing in Cardiology', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-23 14:09:50.287205', 9, '10:00-18:00#500', 'MED10008', '10:00-18:00#500', '', 'MBBS, MD in Cardiology', '00:00-00:00#0', 1800, 'Cardiology', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 9),
+	(10, 'Amar', 'Kantak', 'doctor10@hospital.com', '+91-9000000009', 'F', '', 'Experienced doctor specializing in Pediatrics', 1, 1, '2025-06-15 08:10:04.004463', '2025-06-19 05:44:34.388951', 10, '10:00-18:00#500', 'MED10009', '10:00-18:00#500', '', 'MBBS, MD in Pediatrics', '00:00-00:00#0', 1800, 'Pediatrics', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 10),
+	(11, 'test', 'test', 'tedxcst@test.com', '67759035', 'F', 'catalog/IMG_20190810_175204_-_Copy.jpg', '', 1, 0, '2025-06-23 08:57:09.023284', '2025-06-23 08:57:09.023284', 24, '10:00-18:00#500', 'abcde83939', '10:00-18:00#500', '', 'MBBS,MD', '00:00-00:00#0', 1800, '', '00:00-00:00#0', '10:00-18:00#500', '10:00-18:00#500', '10:00-18:00#500', 1);
+/*!40000 ALTER TABLE `doctor_doctor` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_doctorcategory
+CREATE TABLE IF NOT EXISTS `doctor_doctorcategory` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `is_primary` tinyint(1) NOT NULL,
+  `expertise_level` varchar(20) COLLATE utf32_bin NOT NULL,
+  `years_in_category` int unsigned NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `category_id` bigint NOT NULL,
+  `doctor_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `doctor_doctorcategory_doctor_id_category_id_9e90a8d2_uniq` (`doctor_id`,`category_id`),
+  KEY `doctor_doctorcategory_category_id_35707bd0` (`category_id`),
+  KEY `doctor_doctorcategory_doctor_id_a98c3854` (`doctor_id`),
+  CONSTRAINT `doctor_doctorcategory_chk_1` CHECK ((`years_in_category` >= 0))
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_doctorcategory: 14 rows
+DELETE FROM `doctor_doctorcategory`;
+/*!40000 ALTER TABLE `doctor_doctorcategory` DISABLE KEYS */;
+INSERT INTO `doctor_doctorcategory` (`id`, `is_primary`, `expertise_level`, `years_in_category`, `created_at`, `category_id`, `doctor_id`) VALUES
+	(1, 1, 'expert', 1, '2025-06-15 08:10:03.988430', 1, 1),
+	(2, 0, 'intermediate', 1, '2025-06-15 08:10:03.988430', 2, 1),
+	(3, 1, 'advanced', 2, '2025-06-15 08:10:03.988430', 2, 2),
+	(4, 1, 'advanced', 3, '2025-06-15 08:10:04.004463', 3, 3),
+	(5, 1, 'advanced', 4, '2025-06-15 08:10:04.004463', 4, 4),
+	(6, 0, 'intermediate', 4, '2025-06-15 08:10:04.004463', 5, 4),
+	(7, 1, 'expert', 5, '2025-06-15 08:10:04.004463', 5, 5),
+	(8, 1, 'advanced', 6, '2025-06-15 08:10:04.004463', 6, 6),
+	(9, 1, 'advanced', 7, '2025-06-15 08:10:04.004463', 7, 7),
+	(10, 0, 'intermediate', 7, '2025-06-15 08:10:04.004463', 8, 7),
+	(11, 1, 'advanced', 8, '2025-06-15 08:10:04.004463', 8, 8),
+	(12, 1, 'expert', 9, '2025-06-15 08:10:04.004463', 9, 9),
+	(13, 1, 'advanced', 10, '2025-06-15 08:10:04.004463', 10, 10),
+	(14, 0, 'intermediate', 10, '2025-06-15 08:10:04.004463', 1, 10);
+/*!40000 ALTER TABLE `doctor_doctorcategory` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_doctorcategoryrating
+CREATE TABLE IF NOT EXISTS `doctor_doctorcategoryrating` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `rating` int unsigned NOT NULL,
+  `review` longtext COLLATE utf32_bin NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `doctor_category_id` bigint NOT NULL,
+  `patient_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `doctor_doctorcategoryrat_doctor_category_id_patie_dc846db3_uniq` (`doctor_category_id`,`patient_id`),
+  KEY `doctor_doctorcategoryrating_doctor_category_id_3c6f1574` (`doctor_category_id`),
+  KEY `doctor_doctorcategoryrating_patient_id_843feb77` (`patient_id`),
+  CONSTRAINT `doctor_doctorcategoryrating_chk_1` CHECK ((`rating` >= 0))
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_doctorcategoryrating: 0 rows
+DELETE FROM `doctor_doctorcategoryrating`;
+/*!40000 ALTER TABLE `doctor_doctorcategoryrating` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doctor_doctorcategoryrating` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.doctor_doctorspecial
+CREATE TABLE IF NOT EXISTS `doctor_doctorspecial` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sdate` date NOT NULL,
+  `hours` longtext COLLATE utf32_bin NOT NULL,
+  `off` longtext COLLATE utf32_bin NOT NULL,
+  `doctor_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `doctor_doctorspecial_doctor_id_2380eb1e` (`doctor_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.doctor_doctorspecial: 2 rows
+DELETE FROM `doctor_doctorspecial`;
+/*!40000 ALTER TABLE `doctor_doctorspecial` DISABLE KEYS */;
+INSERT INTO `doctor_doctorspecial` (`id`, `sdate`, `hours`, `off`, `doctor_id`) VALUES
+	(1, '2025-07-10', '08:00-12:00#600', '', 1),
+	(2, '2025-06-27', '08:00-12:0#600', '', 10);
+/*!40000 ALTER TABLE `doctor_doctorspecial` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.email_otps
+CREATE TABLE IF NOT EXISTS `email_otps` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(150) COLLATE utf32_bin DEFAULT NULL,
+  `otp_code` varchar(4) COLLATE utf32_bin DEFAULT NULL,
+  `is_used` tinyint DEFAULT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.email_otps: 0 rows
+DELETE FROM `email_otps`;
+/*!40000 ALTER TABLE `email_otps` DISABLE KEYS */;
+/*!40000 ALTER TABLE `email_otps` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.fm_faltumodel
+CREATE TABLE IF NOT EXISTS `fm_faltumodel` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.fm_faltumodel: 0 rows
+DELETE FROM `fm_faltumodel`;
+/*!40000 ALTER TABLE `fm_faltumodel` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fm_faltumodel` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.information_information
+CREATE TABLE IF NOT EXISTS `information_information` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf32_bin NOT NULL,
+  `seo_url` varchar(250) COLLATE utf32_bin NOT NULL,
+  `content` longtext COLLATE utf32_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `sort_order` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `seo_url` (`seo_url`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.information_information: 0 rows
+DELETE FROM `information_information`;
+/*!40000 ALTER TABLE `information_information` DISABLE KEYS */;
+/*!40000 ALTER TABLE `information_information` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.orders_order
+CREATE TABLE IF NOT EXISTS `orders_order` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf32_bin NOT NULL,
+  `email` varchar(200) COLLATE utf32_bin NOT NULL,
+  `phone` varchar(20) COLLATE utf32_bin NOT NULL,
+  `device_id` varchar(120) COLLATE utf32_bin NOT NULL,
+  `payment_method` varchar(20) CHARACTER SET utf32 COLLATE utf32_bin DEFAULT NULL,
+  `user_agent` varchar(300) COLLATE utf32_bin NOT NULL,
+  `total` decimal(7,2) NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `comment` varchar(200) COLLATE utf32_bin NOT NULL,
+  `currency_code` varchar(4) COLLATE utf32_bin NOT NULL,
+  `user_id` int NOT NULL,
+  `status` varchar(10) COLLATE utf32_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=138 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.orders_order: 137 rows
+DELETE FROM `orders_order`;
+/*!40000 ALTER TABLE `orders_order` DISABLE KEYS */;
+INSERT INTO `orders_order` (`id`, `name`, `email`, `phone`, `device_id`, `payment_method`, `user_agent`, `total`, `created_at`, `updated_at`, `comment`, `currency_code`, `user_id`, `status`) VALUES
+	(1, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:05:49.205268', '2025-08-24 12:05:49.205820', '', 'INR', 0, 'CREATED'),
+	(2, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:06:26.040533', '2025-08-24 12:06:26.040533', '', 'INR', 0, 'CREATED'),
+	(3, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:08:13.063061', '2025-08-24 12:08:13.063061', '', 'INR', 0, 'CREATED'),
+	(4, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:08:54.077142', '2025-08-24 12:08:54.077142', '', 'INR', 0, 'CREATED'),
+	(5, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:11:08.275454', '2025-08-24 12:11:08.275454', '', 'INR', 0, 'CREATED'),
+	(6, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:13:27.669589', '2025-08-24 12:13:27.669589', '', 'INR', 0, 'CREATED'),
+	(7, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:15:25.043679', '2025-08-24 12:15:25.043679', '', 'INR', 0, 'CREATED'),
+	(8, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:16:21.335109', '2025-08-24 12:16:21.335109', '', 'INR', 0, 'CREATED'),
+	(9, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:17:16.287503', '2025-08-24 12:17:16.287503', '', 'INR', 0, 'CREATED'),
+	(10, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:18:13.077490', '2025-08-24 12:18:13.077490', '', 'INR', 0, 'CREATED'),
+	(11, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:19:03.124786', '2025-08-24 12:19:03.124786', '', 'INR', 0, 'CREATED'),
+	(12, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 12:20:00.338007', '2025-08-24 12:20:00.338007', '', 'INR', 0, 'CREATED'),
+	(13, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 13:12:30.769126', '2025-08-24 13:12:30.770116', '', 'INR', 0, 'CREATED'),
+	(14, '', '', '', '983dc2-75b2-4126-aad9-17dde608', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-24 13:14:49.035682', '2025-08-24 13:14:49.035682', '', 'INR', 0, 'CREATED'),
+	(15, '', '', '', '5f4430-26da-4f83-95ab-dc2af7e4', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-25 21:29:26.971811', '2025-08-25 21:29:26.971811', '', 'INR', 0, 'CREATED'),
+	(16, '', '', '', '5f4430-26da-4f83-95ab-dc2af7e4', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-25 21:29:26.986761', '2025-08-25 21:29:26.986761', '', 'INR', 0, 'CREATED'),
+	(17, '', '', '', '0d18ce-6264-469b-954e-6a98c37c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 09:15:07.767724', '2025-08-26 09:15:07.767724', '', 'INR', 0, 'CREATED'),
+	(18, '', '', '', '0d18ce-6264-469b-954e-6a98c37c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 09:15:07.766324', '2025-08-26 09:15:07.766324', '', 'INR', 0, 'CREATED'),
+	(19, '', '', '', '0d18ce-6264-469b-954e-6a98c37c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 16:43:31.971886', '2025-08-26 16:43:31.971886', '', 'INR', 0, 'CREATED'),
+	(20, '', '', '', '0d18ce-6264-469b-954e-6a98c37c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 16:43:32.073544', '2025-08-26 16:43:32.073544', '', 'INR', 0, 'CREATED'),
+	(21, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 20:34:49.468436', '2025-08-26 20:34:49.468436', '', 'INR', 0, 'CREATED'),
+	(22, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 20:34:49.540489', '2025-08-26 20:34:49.540489', '', 'INR', 0, 'CREATED'),
+	(23, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 20:38:28.567103', '2025-08-26 20:38:28.567103', '', 'INR', 0, 'CREATED'),
+	(24, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 20:49:34.148995', '2025-08-26 20:49:34.148995', '', 'INR', 0, 'CREATED'),
+	(25, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 21:04:37.260255', '2025-08-26 21:04:37.260255', '', 'INR', 0, 'CREATED'),
+	(26, '', '', '', '8811cf-804e-44c6-a16e-2abf50ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-26 21:14:01.534368', '2025-08-26 21:14:01.534368', '', 'INR', 0, 'CREATED'),
+	(27, '', '', '', 'fb023c-d50f-43f6-ba18-d027f2c9', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-27 22:20:17.966419', '2025-08-27 22:20:17.966419', '', 'INR', 0, 'CREATED'),
+	(28, '', '', '', 'fb023c-d50f-43f6-ba18-d027f2c9', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-08-27 22:20:18.030908', '2025-08-27 22:20:18.030908', '', 'INR', 0, 'CREATED'),
+	(29, '', '', '', 'e8d1a6-c097-43ce-a7a2-3dfcf930', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-02 11:45:17.927301', '2025-09-02 11:45:17.927301', '', 'INR', 0, 'CREATED'),
+	(30, '', '', '', 'e8d1a6-c097-43ce-a7a2-3dfcf930', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-02 11:45:17.961496', '2025-09-02 11:45:17.961496', '', 'INR', 0, 'CREATED'),
+	(31, '', '', '', '84b678-1f91-4d43-bfa7-142ebeea', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 11:11:41.942390', '2025-09-03 11:11:41.942390', '', 'INR', 0, 'CREATED'),
+	(32, '', '', '', '84b678-1f91-4d43-bfa7-142ebeea', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 11:11:41.992102', '2025-09-03 11:11:41.992102', '', 'INR', 0, 'CREATED'),
+	(33, '', '', '', '84b678-1f91-4d43-bfa7-142ebeea', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 11:22:17.646597', '2025-09-03 11:22:17.646597', '', 'INR', 0, 'CREATED'),
+	(34, '', '', '', '7c3c47-6f42-4577-8cca-5b239b4e', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 12:51:08.040260', '2025-09-03 12:51:08.040260', '', 'INR', 0, 'CREATED'),
+	(35, 'sulekha', '', '9785891579', '7c3c47-6f42-4577-8cca-5b239b4e', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 12:51:08.081672', '2025-09-03 12:55:43.589511', '', 'INR', 0, 'CREATED'),
+	(36, '', '', '', 'bf255c-5a68-42ee-801e-298c3bdf', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 14:29:25.600432', '2025-09-03 14:29:25.600432', '', 'INR', 0, 'CREATED'),
+	(37, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '1234567890', 'bf255c-5a68-42ee-801e-298c3bdf', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 14:29:25.637857', '2025-09-03 14:33:17.510125', '', 'INR', 0, 'CREATED'),
+	(38, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '1234567890', 'bf255c-5a68-42ee-801e-298c3bdf', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 16:25:43.217993', '2025-09-03 16:25:43.318779', '', 'INR', 0, 'CREATED'),
+	(39, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '1234567890', 'bf255c-5a68-42ee-801e-298c3bdf', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 16:36:38.815250', '2025-09-03 16:36:38.857922', '', 'INR', 0, 'CREATED'),
+	(40, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '1234567890', 'bf255c-5a68-42ee-801e-298c3bdf', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-03 17:08:03.144916', '2025-09-03 17:08:03.238523', '', 'INR', 0, 'CREATED'),
+	(41, '', '', '', '44374d-34be-4fc7-9592-3b233b42', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 09:01:12.449192', '2025-09-04 09:01:12.449192', '', 'INR', 0, 'CREATED'),
+	(42, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 09:01:12.484010', '2025-09-04 09:02:14.215487', '', 'INR', 0, 'CREATED'),
+	(43, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 15:07:33.376407', '2025-09-04 15:07:33.523523', '', 'INR', 0, 'CREATED'),
+	(44, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 15:12:27.434169', '2025-09-04 15:17:55.747803', '', 'INR', 0, 'CREATED'),
+	(45, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 15:26:22.923584', '2025-09-04 15:26:25.640813', '', 'INR', 0, 'CREATED'),
+	(46, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 17:21:33.995840', '2025-09-04 17:21:38.499177', '', 'INR', 0, 'CREATED'),
+	(47, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 17:21:53.670900', '2025-09-04 17:21:58.560890', '', 'INR', 0, 'CREATED'),
+	(48, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 17:29:44.301408', '2025-09-04 17:29:48.164117', '', 'INR', 0, 'CREATED'),
+	(49, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 22:18:49.954783', '2025-09-04 22:18:57.121322', '', 'INR', 0, 'CREATED'),
+	(50, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 22:45:42.438171', '2025-09-04 22:45:44.916314', '', 'INR', 0, 'CREATED'),
+	(51, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 22:46:41.431764', '2025-09-04 22:46:44.836139', '', 'INR', 0, 'CREATED'),
+	(52, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '9785891579', '44374d-34be-4fc7-9592-3b233b42', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-04 22:55:11.781893', '2025-09-04 22:55:16.061174', '', 'INR', 0, 'CREATED'),
+	(53, '', '', '', '099cbe-5d5c-4018-8718-d4fd4bf6', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-05 22:28:21.339404', '2025-09-05 22:28:21.339404', '', 'INR', 0, 'CREATED'),
+	(54, '', '', '', '099cbe-5d5c-4018-8718-d4fd4bf6', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-05 22:28:21.386565', '2025-09-05 22:28:26.400424', '', 'INR', 0, 'CREATED'),
+	(55, '', '', '', '099cbe-5d5c-4018-8718-d4fd4bf6', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-05 22:28:58.781247', '2025-09-05 22:28:58.781247', '', 'INR', 0, 'CREATED'),
+	(56, 'test sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', '099cbe-5d5c-4018-8718-d4fd4bf6', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-05 22:28:58.803865', '2025-09-05 22:29:10.432370', '', 'INR', 0, 'CREATED'),
+	(57, '', '', '', 'e3e7c7-890f-4695-8be5-a2e4c798', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 08:37:18.315565', '2025-09-06 08:37:18.315565', '', 'INR', 0, 'CREATED'),
+	(58, '', '', '', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 08:37:18.349625', '2025-09-06 08:37:31.912257', '', 'INR', 0, 'CREATED'),
+	(59, '', '', '', 'e3e7c7-890f-4695-8be5-a2e4c798', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 08:45:44.535853', '2025-09-06 08:45:44.535853', '', 'INR', 0, 'CREATED'),
+	(60, 'test test', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 08:45:44.582358', '2025-09-06 08:46:18.019993', '', 'INR', 0, 'CREATED'),
+	(61, 'test test', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 10:58:39.578693', '2025-09-06 10:58:39.707545', '', 'INR', 0, 'CREATED'),
+	(62, 'test test', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 11:13:26.138963', '2025-09-06 11:13:30.433930', '', 'INR', 0, 'CREATED'),
+	(63, 'test test', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 11:16:33.551083', '2025-09-06 11:16:37.479854', '', 'INR', 0, 'CREATED'),
+	(64, '', '', '', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 11:24:38.606226', '2025-09-06 12:08:22.075295', '', 'INR', 0, 'CREATED'),
+	(65, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:31:02.006502', '2025-09-06 14:31:07.821637', '', 'INR', 0, 'CREATED'),
+	(66, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:31:34.671315', '2025-09-06 14:31:49.660098', '', 'INR', 0, 'CREATED'),
+	(67, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:40:21.267771', '2025-09-06 14:40:26.016304', '', 'INR', 0, 'CREATED'),
+	(68, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:40:33.260138', '2025-09-06 14:40:50.971032', '', 'INR', 0, 'CREATED'),
+	(69, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:40:55.705603', '2025-09-06 14:43:48.510297', '', 'INR', 0, 'CREATED'),
+	(70, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:43:58.364200', '2025-09-06 14:45:27.552225', '', 'INR', 0, 'CREATED'),
+	(71, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:45:32.566804', '2025-09-06 14:46:05.613023', '', 'INR', 0, 'CREATED'),
+	(72, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:46:34.456304', '2025-09-06 14:53:02.961777', '', 'INR', 0, 'CREATED'),
+	(73, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:53:27.141078', '2025-09-06 14:53:31.489015', '', 'INR', 0, 'CREATED'),
+	(74, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:53:39.127898', '2025-09-06 14:57:50.318269', '', 'INR', 0, 'CREATED'),
+	(75, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 14:59:33.921078', '2025-09-06 14:59:45.734531', '', 'INR', 0, 'CREATED'),
+	(76, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:01:58.472884', '2025-09-06 15:02:01.750143', '', 'INR', 0, 'CREATED'),
+	(77, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:02:08.034780', '2025-09-06 15:03:50.378013', '', 'INR', 0, 'CREATED'),
+	(78, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:03:56.966491', '2025-09-06 15:03:57.108792', '', 'INR', 0, 'CREATED'),
+	(79, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:22:02.241367', '2025-09-06 15:22:05.576912', '', 'INR', 0, 'CREATED'),
+	(80, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:23:59.520086', '2025-09-06 15:24:02.858041', '', 'INR', 0, 'CREATED'),
+	(81, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:48:16.382246', '2025-09-06 15:48:21.093901', '', 'INR', 0, 'CREATED'),
+	(82, 'Siddharth Singh Chauhan', 'test@test.com', '67759035', 'e3e7c7-890f-4695-8be5-a2e4c798', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-06 15:50:05.251985', '2025-09-06 15:50:10.522053', '', 'INR', 0, 'PROCESSING'),
+	(83, '', '', '', 'bc6e71-5fc7-400d-9e7b-747fff0f', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 11:52:56.185058', '2025-09-08 11:52:56.185058', '', 'INR', 0, 'CREATED'),
+	(84, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', 'bc6e71-5fc7-400d-9e7b-747fff0f', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 11:52:56.224431', '2025-09-08 11:53:08.886529', '', 'INR', 0, 'CREATED'),
+	(85, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', 'bc6e71-5fc7-400d-9e7b-747fff0f', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 12:18:21.515182', '2025-09-08 12:18:28.532708', '', 'INR', 0, 'PROCESSING'),
+	(86, '', '', '', '17cd41-4ad0-40f1-aa84-16a36ac3', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 13:07:28.796592', '2025-09-08 13:07:28.796592', '', 'INR', 0, 'CREATED'),
+	(87, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', '17cd41-4ad0-40f1-aa84-16a36ac3', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 13:07:28.801270', '2025-09-08 13:07:38.718124', '', 'INR', 0, 'CREATED'),
+	(88, '', '', '', '25c65e-589a-4991-bc75-f4a12f7a', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 16:19:33.175526', '2025-09-08 16:19:33.175526', '', 'INR', 0, 'CREATED'),
+	(89, '', '', '', '25c65e-589a-4991-bc75-f4a12f7a', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-08 16:19:33.233359', '2025-09-08 16:19:33.233359', '', 'INR', 0, 'CREATED'),
+	(90, '', '', '', 'eff14d-11f2-4aab-8703-0464cdff', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-09 17:18:37.213377', '2025-09-09 17:18:37.213377', '', 'INR', 0, 'CREATED'),
+	(91, '', '', '', 'eff14d-11f2-4aab-8703-0464cdff', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-09 17:18:37.267437', '2025-09-09 17:18:37.267437', '', 'INR', 0, 'CREATED'),
+	(92, '', '', '', 'eff14d-11f2-4aab-8703-0464cdff', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-09 20:59:07.564903', '2025-09-09 20:59:07.564903', '', 'INR', 0, 'CREATED'),
+	(93, '', '', '', '5c2f2b-7564-4a8a-b10c-f3e5c722', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36', 0.00, '2025-09-09 21:04:13.258330', '2025-09-09 21:04:13.258330', '', 'INR', 0, 'CREATED'),
+	(94, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 10:48:23.304723', '2025-09-10 10:48:23.304723', '', 'INR', 0, 'CREATED'),
+	(95, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 10:48:23.353692', '2025-09-10 10:48:23.353692', '', 'INR', 0, 'CREATED'),
+	(96, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:11:52.488136', '2025-09-10 11:11:52.488136', '', 'INR', 0, 'CREATED'),
+	(97, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:23:04.875649', '2025-09-10 11:23:04.875649', '', 'INR', 0, 'CREATED'),
+	(98, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:24:32.718484', '2025-09-10 11:24:32.718484', '', 'INR', 0, 'CREATED'),
+	(99, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:30:17.744034', '2025-09-10 11:30:17.744034', '', 'INR', 0, 'CREATED'),
+	(100, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:42:40.380068', '2025-09-10 11:42:40.380068', '', 'INR', 0, 'CREATED'),
+	(101, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 11:46:04.226565', '2025-09-10 11:46:04.226565', '', 'INR', 0, 'CREATED'),
+	(102, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 12:10:02.652951', '2025-09-10 12:10:02.652951', '', 'INR', 0, 'CREATED'),
+	(103, '', '', '', 'f65aa8-ab61-42e3-9034-cfec1e74', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 12:10:29.653870', '2025-09-10 12:10:29.653870', '', 'INR', 0, 'CREATED'),
+	(104, '', '', '', '40426f-cd82-4087-b8e4-203f98ca', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 12:18:23.823669', '2025-09-10 12:18:23.823669', '', 'INR', 0, 'CREATED'),
+	(105, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 12:25:37.008645', '2025-09-10 12:25:37.008645', '', 'INR', 0, 'CREATED'),
+	(106, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 12:25:37.023183', '2025-09-10 12:25:37.023183', '', 'INR', 0, 'CREATED'),
+	(107, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 16:24:08.204836', '2025-09-10 16:24:08.204836', '', 'INR', 0, 'CREATED'),
+	(108, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 16:25:43.884294', '2025-09-10 16:25:43.884294', '', 'INR', 0, 'CREATED'),
+	(109, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 16:48:53.506067', '2025-09-10 16:48:53.506067', '', 'INR', 0, 'CREATED'),
+	(110, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 16:50:01.842269', '2025-09-10 16:50:01.842269', '', 'INR', 0, 'CREATED'),
+	(111, '', '', '', '2b1a31-21b6-4a7a-a000-56d11467', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-10 16:59:49.222963', '2025-09-10 16:59:49.222963', '', 'INR', 0, 'CREATED'),
+	(112, '', '', '', '43fcd8-a077-482f-9854-49d379a2', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-11 15:08:59.792629', '2025-09-11 15:08:59.792629', '', 'INR', 0, 'CREATED'),
+	(113, '', '', '', '43fcd8-a077-482f-9854-49d379a2', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-11 15:08:59.811785', '2025-09-11 15:08:59.811785', '', 'INR', 0, 'CREATED'),
+	(114, '', '', '', '43fcd8-a077-482f-9854-49d379a2', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-11 15:18:47.457035', '2025-09-11 15:18:47.457035', '', 'INR', 0, 'CREATED'),
+	(115, '', '', '', '43fcd8-a077-482f-9854-49d379a2', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-11 15:18:47.521048', '2025-09-11 15:18:47.521048', '', 'INR', 0, 'CREATED'),
+	(116, '', '', '', '43fcd8-a077-482f-9854-49d379a2', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-11 15:31:03.753038', '2025-09-11 15:31:03.753038', '', 'INR', 0, 'CREATED'),
+	(117, '', '', '', '0fc5a9-1644-4dfe-a4ab-ff98564c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 08:30:39.763962', '2025-09-12 08:30:39.763962', '', 'INR', 0, 'CREATED'),
+	(118, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 08:30:39.781039', '2025-09-12 08:59:14.981883', '', 'INR', 0, 'PROCESSING'),
+	(119, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 09:34:51.236871', '2025-09-12 09:34:51.333864', '', 'INR', 0, 'CREATED'),
+	(120, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 09:34:51.275411', '2025-09-12 09:39:38.093427', '', 'INR', 0, 'PROCESSING'),
+	(121, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 09:40:00.922271', '2025-09-12 09:40:00.987941', '', 'INR', 0, 'CREATED'),
+	(122, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 09:40:00.950150', '2025-09-12 09:40:17.443795', '', 'INR', 0, 'PROCESSING'),
+	(123, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 10:46:34.999160', '2025-09-12 10:35:25.271712', '', 'INR', 0, 'COMPLETED'),
+	(124, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0fc5a9-1644-4dfe-a4ab-ff98564c', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 10:46:34.996026', '2025-09-12 10:46:35.067652', '', 'INR', 0, 'CREATED'),
+	(125, '', '', '', '50cbbd-45da-4635-ba74-f2dc126e', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 17:06:18.172400', '2025-09-12 17:06:18.172400', '', 'INR', 0, 'CREATED'),
+	(126, '', '', '', '50cbbd-45da-4635-ba74-f2dc126e', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 0.00, '2025-09-12 17:06:18.188462', '2025-09-12 17:06:18.188462', '', 'INR', 0, 'CREATED'),
+	(127, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', '50cbbd-45da-4635-ba74-f2dc126e', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-12 17:07:53.388025', '2025-09-13 03:35:52.514690', '', 'INR', 0, 'COMPLETED'),
+	(128, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', '50cbbd-45da-4635-ba74-f2dc126e', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-12 19:11:07.824851', '2025-09-12 19:11:07.912800', '', 'INR', 0, 'CREATED'),
+	(129, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', '50cbbd-45da-4635-ba74-f2dc126e', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-12 19:11:07.874399', '2025-09-12 21:52:05.155732', '', 'INR', 0, 'CREATED'),
+	(130, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0c56db-4c2c-4a71-9bbd-6362be7b', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-14 09:49:16.057061', '2025-09-14 09:49:31.766680', '', 'INR', 0, 'PROCESSING'),
+	(131, '', '', '', '0c56db-4c2c-4a71-9bbd-6362be7b', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-14 09:49:16.063587', '2025-09-14 09:49:16.079583', '', 'INR', 0, 'CREATED'),
+	(132, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0c56db-4c2c-4a71-9bbd-6362be7b', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 2000.00, '2025-09-14 09:49:57.483421', '2025-09-15 10:07:50.326316', '', 'INR', 0, 'COMPLETED'),
+	(133, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', '0c56db-4c2c-4a71-9bbd-6362be7b', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 2000.00, '2025-09-14 09:49:57.518603', '2025-09-14 05:32:05.075230', '', 'INR', 0, 'PROCESSING'),
+	(134, '', '', '', 'beaa5f-dea4-481c-8dec-4c29fd2a', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-15 21:15:49.656536', '2025-09-15 21:15:49.691356', '', 'INR', 0, 'CREATED'),
+	(135, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', 'beaa5f-dea4-481c-8dec-4c29fd2a', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-15 21:15:49.679554', '2025-09-15 15:59:27.739452', '', 'INR', 0, 'COMPLETED'),
+	(136, 'sulekha', 'siddharthsingh.chauhan@gmail.com', '09828302419', 'beaa5f-dea4-481c-8dec-4c29fd2a', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-15 21:16:16.241690', '2025-09-15 21:16:16.261556', '', 'INR', 0, 'CREATED'),
+	(137, 'siddharth ', 'siddharthsingh.chauhan@gmail.com', '451214512', 'beaa5f-dea4-481c-8dec-4c29fd2a', 'cod', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 1000.00, '2025-09-15 21:16:16.259474', '2025-09-15 15:59:03.989603', '', 'INR', 0, 'COMPLETED');
+/*!40000 ALTER TABLE `orders_order` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.orders_orderhistory
+CREATE TABLE IF NOT EXISTS `orders_orderhistory` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dated` date NOT NULL,
+  `status` varchar(20) COLLATE utf32_bin NOT NULL,
+  `order_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orders_orderhistory_order_id_04c27f47` (`order_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.orders_orderhistory: 7 rows
+DELETE FROM `orders_orderhistory`;
+/*!40000 ALTER TABLE `orders_orderhistory` DISABLE KEYS */;
+INSERT INTO `orders_orderhistory` (`id`, `dated`, `status`, `order_id`) VALUES
+	(1, '2025-09-14', 'CREATED', 132),
+	(2, '2025-09-15', 'COMPLETED', 132),
+	(3, '2025-09-15', 'COMPLETED', 132),
+	(4, '2025-09-15', 'COMPLETED', 137),
+	(5, '2025-09-15', 'COMPLETED', 137),
+	(6, '2025-09-15', 'COMPLETED', 135),
+	(7, '2025-09-15', 'COMPLETED', 135);
+/*!40000 ALTER TABLE `orders_orderhistory` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.orders_orderitems
+CREATE TABLE IF NOT EXISTS `orders_orderitems` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quantity` int NOT NULL,
+  `name` varchar(50) COLLATE utf32_bin NOT NULL,
+  `dated` date NOT NULL,
+  `category` varchar(10) CHARACTER SET utf32 COLLATE utf32_bin DEFAULT NULL,
+  `doctor` varchar(50) CHARACTER SET utf32 COLLATE utf32_bin DEFAULT NULL,
+  `slot` varchar(50) COLLATE utf32_bin NOT NULL,
+  `price` decimal(7,2) NOT NULL,
+  `category_id` bigint NOT NULL,
+  `doctor_id` bigint NOT NULL,
+  `order_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orders_orderitems_category_id_id_15fc01d4` (`category_id`) USING BTREE,
+  KEY `orders_orderitems_doctor_id_id_f48251be` (`doctor_id`) USING BTREE,
+  KEY `orders_orderitems_order_id_id_d7fd89c5` (`order_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=187 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.orders_orderitems: 186 rows
+DELETE FROM `orders_orderitems`;
+/*!40000 ALTER TABLE `orders_orderitems` DISABLE KEYS */;
+INSERT INTO `orders_orderitems` (`id`, `quantity`, `name`, `dated`, `category`, `doctor`, `slot`, `price`, `category_id`, `doctor_id`, `order_id`) VALUES
+	(1, 1, 'Appointment', '2025-08-14', NULL, NULL, '14:00-14:30', 500.00, 3, 3, 12),
+	(2, 1, 'Appointment', '2025-08-14', NULL, NULL, '15:00-15:30', 500.00, 3, 3, 12),
+	(3, 1, 'Appointment', '2025-08-14', NULL, NULL, '13:00-13:30', 500.00, 3, 3, 12),
+	(4, 1, 'Appointment', '2025-08-14', NULL, NULL, '16:30-17:00', 500.00, 3, 1, 12),
+	(5, 1, 'Appointment', '2025-08-14', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 12),
+	(6, 1, 'Appointment', '2025-08-18', NULL, NULL, '17:30-18:00', 500.00, 3, 1, 12),
+	(7, 1, 'Appointment', '2025-08-18', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 12),
+	(8, 1, 'Appointment', '2025-08-18', NULL, NULL, '14:00-14:30', 500.00, 3, 1, 12),
+	(9, 1, 'Appointment', '2025-08-18', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 12),
+	(10, 1, 'Appointment', '2025-08-18', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 12),
+	(11, 1, 'Appointment', '2025-08-18', NULL, NULL, '11:00-11:30', 500.00, 3, 1, 12),
+	(12, 1, 'Appointment', '2025-08-19', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 12),
+	(13, 1, 'Appointment', '2025-08-20', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 12),
+	(14, 1, 'Appointment', '2025-08-14', NULL, NULL, '14:00-14:30', 500.00, 3, 3, 13),
+	(15, 1, 'Appointment', '2025-08-14', NULL, NULL, '15:00-15:30', 500.00, 3, 3, 13),
+	(16, 1, 'Appointment', '2025-08-14', NULL, NULL, '13:00-13:30', 500.00, 3, 3, 13),
+	(17, 1, 'Appointment', '2025-08-14', NULL, NULL, '16:30-17:00', 500.00, 3, 1, 13),
+	(18, 1, 'Appointment', '2025-08-14', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 13),
+	(19, 1, 'Appointment', '2025-08-18', NULL, NULL, '17:30-18:00', 500.00, 3, 1, 13),
+	(20, 1, 'Appointment', '2025-08-18', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 13),
+	(21, 1, 'Appointment', '2025-08-18', NULL, NULL, '14:00-14:30', 500.00, 3, 1, 13),
+	(22, 1, 'Appointment', '2025-08-18', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 13),
+	(23, 1, 'Appointment', '2025-08-18', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 13),
+	(24, 1, 'Appointment', '2025-08-18', NULL, NULL, '11:00-11:30', 500.00, 3, 1, 13),
+	(25, 1, 'Appointment', '2025-08-19', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 13),
+	(26, 1, 'Appointment', '2025-08-20', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 13),
+	(27, 1, 'Appointment', '2025-08-14', NULL, NULL, '14:00-14:30', 500.00, 3, 3, 14),
+	(28, 1, 'Appointment', '2025-08-14', NULL, NULL, '15:00-15:30', 500.00, 3, 3, 14),
+	(29, 1, 'Appointment', '2025-08-14', NULL, NULL, '13:00-13:30', 500.00, 3, 3, 14),
+	(30, 1, 'Appointment', '2025-08-14', NULL, NULL, '16:30-17:00', 500.00, 3, 1, 14),
+	(31, 1, 'Appointment', '2025-08-14', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 14),
+	(32, 1, 'Appointment', '2025-08-18', NULL, NULL, '17:30-18:00', 500.00, 3, 1, 14),
+	(33, 1, 'Appointment', '2025-08-18', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 14),
+	(34, 1, 'Appointment', '2025-08-18', NULL, NULL, '14:00-14:30', 500.00, 3, 1, 14),
+	(35, 1, 'Appointment', '2025-08-18', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 14),
+	(36, 1, 'Appointment', '2025-08-18', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 14),
+	(37, 1, 'Appointment', '2025-08-18', NULL, NULL, '11:00-11:30', 500.00, 3, 1, 14),
+	(38, 1, 'Appointment', '2025-08-19', NULL, NULL, '15:00-15:30', 500.00, 3, 1, 14),
+	(39, 1, 'Appointment', '2025-08-20', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 14),
+	(40, 1, 'Appointment', '2025-08-26', NULL, NULL, '11:30-12:00', 500.00, 3, 3, 15),
+	(41, 1, 'Appointment', '2025-08-28', NULL, NULL, '11:30-12:00', 500.00, 3, 3, 15),
+	(42, 1, 'Appointment', '2025-08-26', NULL, NULL, '11:30-12:00', 500.00, 3, 3, 16),
+	(43, 1, 'Appointment', '2025-08-28', NULL, NULL, '11:30-12:00', 500.00, 3, 3, 16),
+	(44, 1, 'Appointment', '2025-08-27', NULL, NULL, '12:00-12:30', 500.00, 3, 3, 18),
+	(45, 1, 'Appointment', '2025-08-27', NULL, NULL, '12:00-12:30', 500.00, 3, 3, 17),
+	(46, 1, 'Appointment', '2025-08-28', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 19),
+	(47, 1, 'Appointment', '2025-08-28', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 20),
+	(48, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 21),
+	(49, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 21),
+	(50, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 22),
+	(51, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 22),
+	(52, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 23),
+	(53, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 23),
+	(54, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 24),
+	(55, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 24),
+	(56, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 25),
+	(57, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 25),
+	(58, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 26),
+	(59, 1, 'Appointment', '2025-08-28', NULL, NULL, '13:30-14:00', 500.00, 3, 1, 26),
+	(60, 1, 'Appointment', '2025-08-28', NULL, NULL, '11:30-12:00', 500.00, 3, 1, 27),
+	(61, 1, 'Appointment', '2025-08-28', NULL, NULL, '11:30-12:00', 500.00, 3, 1, 28),
+	(62, 1, 'Appointment', '2025-09-03', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 29),
+	(63, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 29),
+	(64, 1, 'Appointment', '2025-09-03', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 30),
+	(65, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 30),
+	(66, 1, 'Appointment', '2025-09-04', NULL, NULL, '11:00-11:30', 500.00, 3, 3, 31),
+	(67, 1, 'Appointment', '2025-09-04', NULL, NULL, '11:00-11:30', 500.00, 3, 3, 32),
+	(68, 1, 'Appointment', '2025-09-04', NULL, NULL, '11:00-11:30', 500.00, 3, 3, 33),
+	(69, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 34),
+	(70, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 35),
+	(71, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 2, 36),
+	(72, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 2, 37),
+	(73, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 2, 38),
+	(74, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 2, 39),
+	(75, 1, 'Appointment', '2025-09-04', NULL, NULL, '13:00-13:30', 500.00, 3, 2, 40),
+	(76, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 41),
+	(77, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 41),
+	(78, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 42),
+	(79, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 42),
+	(80, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 43),
+	(81, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 43),
+	(82, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 44),
+	(83, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 44),
+	(84, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 45),
+	(85, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 45),
+	(86, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 46),
+	(87, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 46),
+	(88, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 47),
+	(89, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 47),
+	(90, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 48),
+	(91, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 48),
+	(92, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 49),
+	(93, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 49),
+	(94, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 50),
+	(95, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 50),
+	(96, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 51),
+	(97, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 51),
+	(98, 1, 'Appointment', '2025-09-04', NULL, NULL, '10:30-11:00', 500.00, 3, 1, 52),
+	(99, 1, 'Appointment', '2025-09-08', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 52),
+	(100, 1, 'Appointment', '2025-09-08', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 53),
+	(101, 1, 'Appointment', '2025-09-08', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 54),
+	(102, 1, 'Appointment', '2025-09-08', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 55),
+	(103, 1, 'Appointment', '2025-09-08', NULL, NULL, '10:30-11:00', 500.00, 3, 3, 56),
+	(104, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 57),
+	(105, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 58),
+	(106, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 59),
+	(107, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 60),
+	(108, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 61),
+	(109, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 62),
+	(110, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 63),
+	(111, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 64),
+	(112, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 65),
+	(113, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 66),
+	(114, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 67),
+	(115, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 68),
+	(116, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 69),
+	(117, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 70),
+	(118, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 71),
+	(119, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 72),
+	(120, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 73),
+	(121, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 74),
+	(122, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 75),
+	(123, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 76),
+	(124, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 77),
+	(125, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 78),
+	(126, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 79),
+	(127, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 80),
+	(128, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 81),
+	(129, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 82),
+	(130, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 83),
+	(131, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 84),
+	(132, 1, 'Appointment', '2025-09-09', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 85),
+	(133, 1, 'Appointment', '2025-09-11', NULL, NULL, '13:00-13:30', 500.00, 3, 3, 87),
+	(134, 1, 'Appointment', '2025-09-11', NULL, NULL, '13:00-13:30', 500.00, 3, 3, 86),
+	(135, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 3, 88),
+	(136, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 3, 89),
+	(137, 1, 'Appointment', '2025-09-09', NULL, NULL, '17:00-17:30', 500.00, 3, 1, 90),
+	(138, 1, 'Appointment', '2025-09-09', NULL, NULL, '17:00-17:30', 500.00, 3, 1, 91),
+	(139, 1, 'Appointment', '2025-09-09', NULL, NULL, '17:00-17:30', 500.00, 3, 1, 92),
+	(140, 1, 'Appointment', '2025-09-10', NULL, NULL, '12:30-13:00', 500.00, 3, 5, 93),
+	(141, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 94),
+	(142, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 95),
+	(143, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 96),
+	(144, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 97),
+	(145, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 98),
+	(146, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 99),
+	(147, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 100),
+	(148, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 101),
+	(149, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 102),
+	(150, 1, 'Appointment', '2025-09-10', NULL, NULL, '11:00-11:30', 500.00, 3, 4, 103),
+	(151, 1, 'Appointment', '2025-09-11', NULL, NULL, '13:00-13:30', 500.00, 3, 1, 104),
+	(152, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 105),
+	(153, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 106),
+	(154, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 107),
+	(155, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 108),
+	(156, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 109),
+	(157, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 110),
+	(158, 1, 'Appointment', '2025-09-11', NULL, NULL, '12:00-12:30', 500.00, 3, 2, 111),
+	(159, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 112),
+	(160, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 113),
+	(161, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 114),
+	(162, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 115),
+	(163, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:00-12:30', 500.00, 3, 1, 116),
+	(164, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 117),
+	(165, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 118),
+	(166, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 119),
+	(167, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 120),
+	(168, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 121),
+	(169, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 122),
+	(170, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 124),
+	(171, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 124),
+	(172, 1, 'Appointment', '2025-09-15', NULL, NULL, '14:30-15:00', 500.00, 3, 1, 123),
+	(173, 1, 'Appointment', '2025-09-15', NULL, NULL, '12:30-13:00', 500.00, 3, 1, 123),
+	(174, 1, 'Appointment', '2025-09-15', 'Surgery', 'Doctor2 LastName2', '14:00-14:30', 500.00, 2, 2, 127),
+	(175, 1, 'Appointment', '2025-09-15', 'Surgery', 'Doctor2 LastName2', '14:00-14:30', 500.00, 2, 2, 128),
+	(176, 1, 'Appointment', '2025-09-15', 'Surgery', 'Doctor2 LastName2', '14:00-14:30', 500.00, 2, 2, 129),
+	(177, 1, 'Appointment', '2025-09-15', 'Pediatrics', 'Doctor3 LastName3', '13:30-14:00', 500.00, 3, 3, 131),
+	(178, 1, 'Appointment', '2025-09-15', 'Pediatrics', 'Doctor3 LastName3', '13:30-14:00', 500.00, 3, 3, 130),
+	(179, 1, 'Appointment', '2025-09-15', 'Pediatrics', 'Doctor3 LastName3', '13:30-14:00', 500.00, 3, 3, 132),
+	(180, 1, 'Appointment', '2025-09-15', 'Surgery', 'Sangeeta Meena', '14:00-14:30', 500.00, 2, 1, 132),
+	(181, 1, 'Appointment', '2025-09-15', 'Pediatrics', 'Doctor3 LastName3', '13:30-14:00', 500.00, 3, 3, 133),
+	(182, 1, 'Appointment', '2025-09-15', 'Surgery', 'Sangeeta Meena', '14:00-14:30', 500.00, 2, 1, 133),
+	(183, 1, 'Appointment', '2025-09-16', 'Surgery', 'Sangeeta Meena', '15:00-15:30', 500.00, 2, 1, 134),
+	(184, 1, 'Appointment', '2025-09-16', 'Surgery', 'Sangeeta Meena', '15:00-15:30', 500.00, 2, 1, 135),
+	(185, 1, 'Appointment', '2025-09-16', 'Surgery', 'Sangeeta Meena', '15:00-15:30', 500.00, 2, 1, 136),
+	(186, 1, 'Appointment', '2025-09-16', 'Surgery', 'Sangeeta Meena', '15:00-15:30', 500.00, 2, 1, 137);
+/*!40000 ALTER TABLE `orders_orderitems` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.orders_ordertotals
+CREATE TABLE IF NOT EXISTS `orders_ordertotals` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) COLLATE utf32_bin NOT NULL,
+  `total` decimal(7,2) NOT NULL,
+  `order_id_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `orders_ordertotals_order_id_id_75135362` (`order_id_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.orders_ordertotals: 0 rows
+DELETE FROM `orders_ordertotals`;
+/*!40000 ALTER TABLE `orders_ordertotals` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orders_ordertotals` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.payment_payment
+CREATE TABLE IF NOT EXISTS `payment_payment` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `code` varchar(10) COLLATE utf32_bin NOT NULL,
+  `title` varchar(20) COLLATE utf32_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.payment_payment: 2 rows
+DELETE FROM `payment_payment`;
+/*!40000 ALTER TABLE `payment_payment` DISABLE KEYS */;
+INSERT INTO `payment_payment` (`id`, `code`, `title`, `status`) VALUES
+	(1, 'cod', 'Cash on Delivery', 1),
+	(2, 'paypal', 'Paypal', 0);
+/*!40000 ALTER TABLE `payment_payment` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.paypal_paypal
+CREATE TABLE IF NOT EXISTS `paypal_paypal` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `email` varchar(150) COLLATE utf32_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `sandbox` tinyint(1) NOT NULL,
+  `transaction` varchar(4) COLLATE utf32_bin NOT NULL,
+  `sort_order` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.paypal_paypal: 1 rows
+DELETE FROM `paypal_paypal`;
+/*!40000 ALTER TABLE `paypal_paypal` DISABLE KEYS */;
+INSERT INTO `paypal_paypal` (`id`, `email`, `status`, `sandbox`, `transaction`, `sort_order`) VALUES
+	(1, 'siddharthsingh.chauhan@gmail.com', 1, 1, 'Auth', 10);
+/*!40000 ALTER TABLE `paypal_paypal` ENABLE KEYS */;
+
+-- Dumping structure for table appoint.taxes_tax
+CREATE TABLE IF NOT EXISTS `taxes_tax` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(8) COLLATE utf32_bin NOT NULL,
+  `type` varchar(20) COLLATE utf32_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `sort_order` int NOT NULL,
+  `rate` decimal(4,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf32 COLLATE=utf32_bin;
+
+-- Dumping data for table appoint.taxes_tax: 1 rows
+DELETE FROM `taxes_tax`;
+/*!40000 ALTER TABLE `taxes_tax` DISABLE KEYS */;
+INSERT INTO `taxes_tax` (`id`, `name`, `type`, `status`, `sort_order`, `rate`) VALUES
+	(1, 'GST', 'P', 1, 1, 28.00);
+/*!40000 ALTER TABLE `taxes_tax` ENABLE KEYS */;
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

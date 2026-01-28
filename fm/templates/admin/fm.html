@@ -1,0 +1,273 @@
+
+<div id="modal-image" class="modal">
+  <div id="filemanager" class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <h5 class="modal-title">{{ heading_title }}</h5>
+      
+           <button type="button" class="close"  data-bs-dismiss="modal"  aria-hidden="true">&times;</button>
+       
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-5"><a href="{{ purl }}&k=2" data-toggle="tooltip" title="{{ button_parent }}" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="{{ rurl }}&k=2" data-toggle="tooltip" title="{{ button_refresh }}" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+            <button type="button" data-toggled="tooltip" title="{{ button_upload }}" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
+            <button type="button" data-toggled="tooltip" title="{{ button_folder }}" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
+            <button type="button" data-toggled="tooltip" title="{{ button_delete }}" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+           <input type="hidden" name="directory" value="{{ directory }}" id="input-directory"/>
+          </div>
+        </div>
+<div id="modal-folder" class="row mb-3" style="display: none;">
+  <div class="col-sm-12">
+    <div class="input-group">
+      <div class="input-group">
+        <input type="text" name="folder" value="" placeholder="{{ entry_folder }}" id="input-folder" class="form-control">
+        <button type="button" title="{{ button_folder }}" id="button-create" class="btn btn-primary"><i class="fa-solid fa-plus-circle"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+<hr/>
+<div >
+        <div class='row'>
+          {% for  file in imgs %}
+             <div class='col-sm-4 col-xs-6 text-center'>
+               {% if file.type == 'directory'%}
+               <div class="text-center"><a  href="{{ file.href }}" onclickk="loadfolder('{{ file.href }}')" class="directory" style="vertical-align: middle;"><i class="fa fa-folder fa-5x"></i></a></div>
+              <label>
+               <input type="checkbox" name="path" value="{{ file.path }}" />
+                {{ file.name }}
+             </label>
+       
+          {% endif%}
+        
+                {% if file.type == 'image' %}
+                <a href="{{ image.href }}" class="thumbnail mb-1"><img src="{{ file.thumb }}" class="img-thumbnail"  alt="{{ file.name }}" title="{{ file.name }}" /></a>
+                
+                <label>
+                  <input type="checkbox" name="path" value="{{ file.path }}" />
+                  {{ file.name }}</label>
+                {% endif %} 
+      </div>
+      {% endfor %}
+
+          </div>
+
+
+
+          <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+
+</div>
+
+    </div>  <!--modal body-->
+
+
+
+    </div><!--modal content-->
+</div>
+</div>
+<script>
+
+
+  function hidedlg()
+  {
+
+    $('#modal-image').modal('hide');
+
+  }
+
+$('#modal-image').on('click', '#button-parent', function (e) {
+      e.preventDefault();
+
+      $('#modal-image .modal-body').load($(this).attr('href'));
+  });
+
+  $('#modal-image').on('click', '#button-refresh', function (e) {
+      e.preventDefault();
+
+      $('#modal-image .modal-body').load($(this).attr('href'));
+  });
+
+  $('#modal-image').on('keydown', '#input-search', function (e) {
+      if (e.which == 13) {
+          $('#button-search').trigger('click');
+      }
+  });
+
+  
+
+  $('#modal-image').on('click', 'a.thumbnail',function(e) {
+ 
+    e.preventDefault();
+
+    {% if thumb %}
+    //alert('{{thumb}}');
+    $('#{{ thumb }}').attr('src', $(this).find('img').attr('src'));
+ 
+    console.log($(this).find('img').attr('src'));
+    {% endif %}
+  
+    $('#{{ target }}').val($(this).parent().find('input').val());
+    console.log($(this).parent());
+
+    $('#modal-image').modal('hide');
+  });
+
+  function loadfolder(ff)
+  {
+  console.log(ff);
+ 
+//console.log(decodeURIComponent(ff));
+  $('#modal-image .modal-body').load(stripChar(ff,'#'));
+  }
+  $('#modal-image').on('click', 'a.directory', function (e) {
+      e.preventDefault();
+//alert($(this).attr('href'));
+      $('#modal-image .modal-body').load($(this).attr('href'));
+  });
+  
+   $('#modal-image').on('click','#button-refresh', function() {
+
+  $('#modal-image .modal-body').load($(this).attr('href'));
+   });
+    $('#modal-image').on('click','#button-upload', function() {
+      $('#form-upload').remove();
+       var directory=$('#input-directory').val();
+      $('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" value="" multiple="multiple" />{%csrf_token%}</form>');
+    
+      $('#form-upload input[name=\'file\']').trigger('click');
+    
+      if (typeof timer != 'undefined') {
+          clearInterval(timer);
+      }
+    
+      timer = setInterval(function() {
+        if ($('#form-upload input[name=\'file\']').val() != '') {
+          clearInterval(timer);
+    
+          $.ajax({
+            url: "{% url 'admin:uploadfm' %}?directory="+directory,
+            type: 'post',
+            dataType: 'json',
+            data: new FormData($('#form-upload')[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+              $('#button-upload i').replaceWith('<i class="fa fa-circle-o-notch fa-spin"></i>');
+              $('#button-upload').prop('disabled', true);
+            },
+            complete: function() {
+              $('#button-upload i').replaceWith('<i class="fa fa-upload"></i>');
+              $('#button-upload').prop('disabled', false);
+            },
+            success: function(json) {
+              if (json['error']) {
+                alert(json['error']);
+              }
+    
+              if (json['success']) {
+                //alert(json['success']);
+    
+                $('#button-refresh').trigger('click');
+              }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+          });
+        }
+      }, 500);
+    });
+     $('#modal-image').on('click', '#button-folder', function () {
+      $('#modal-folder').slideToggle();
+  });
+    $('#modal-image').on('click','#button-delete', function(e) {
+      if (confirm('{{ text_confirm }}')) {
+        var token='{{csrf_token}}';
+        var data1={};
+        data1=$('input[name^=\'path\']:checked');
+       // data1['csrf_token']=token;
+        console.log(data1);
+        $.ajax({
+          url: '{% url 'admin:deleteF' %}',
+          type: 'post',
+          headers: {'X-CSRFToken': token},
+          dataType: 'json',
+          data: data1,
+          beforeSend: function() {
+            $('#button-delete').prop('disabled', true);
+          },
+          complete: function() {
+            $('#button-delete').prop('disabled', false);
+          },
+          success: function(json) {
+            if (json['error']) {
+              alert(json['error']);
+            }
+    
+            if (json['success']) {
+              alert(json['success']);
+    
+              $('#button-refresh').trigger('click');
+            }
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+        });
+      }
+    });
+    $('#modal-image').on('click','#button-folder', function() {
+      $('#button-create').on('click', function() {
+          var token='{{csrf_token}}';
+        $.ajax({
+          url: '{% url 'admin:createfolder' %}?directory={{ directory }}',
+          type: 'post',
+           headers: {'X-CSRFToken': token},
+          dataType: 'json',
+         // data: 'folder=' + encodeURIComponent($('input[name=\'folder\']').val()),
+        data: 'folder=' + encodeURIComponent($('#input-folder').val()),
+          beforeSend: function() {
+            $('#button-create').prop('disabled', true);
+          },
+          complete: function() {
+            $('#button-create').prop('disabled', false);
+          },
+          success: function(json) {
+            if (json['error']) {
+              alert(json['error']);
+            }
+    
+            if (json['success']) {
+              alert(json['success']);
+    
+              $('#button-refresh').trigger('click');
+            }
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+        });
+      });
+    });
+      
+</script>

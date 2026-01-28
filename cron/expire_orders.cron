@@ -1,0 +1,1 @@
+*/30 * * * * python /app/manage.py expire_orders >> /var/log/cron.log 2>&1
