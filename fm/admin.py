@@ -245,7 +245,7 @@ class FaltuAdmin(admin.ModelAdmin):
             err = {"error": "Invalid File uuPloaded"}
             return JsonResponse(err)
         else:
-            # print("valid file")
+            print("valid file")
             fs = FileSystemStorage()
             nf = self.rename(name, ext)
             print(f"{prefix} is prefix and {nf} is nf")
