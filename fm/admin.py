@@ -130,7 +130,7 @@ class FaltuAdmin(admin.ModelAdmin):
                         }
                     )
         #print(imgs)
-        paginator = Paginator(imgs, pagesize)
+        paginator = Paginator(merge pagesize)
         page_obj = paginator.get_page(page)
         #############parent url down
         purl = "?stuff=1"
@@ -142,7 +142,7 @@ class FaltuAdmin(admin.ModelAdmin):
 
         purl = reverse("admin:commonfilemanager") + purl
         rurl = purl
-        print(purl)
+        #print(purl)
         if directory != None:
             rurl = rurl + "&directory=" + directory
            
@@ -226,7 +226,7 @@ class FaltuAdmin(admin.ModelAdmin):
         parent = ""
         if directory != None and directory != "":
             directory = settings.MEDIA_ROOT + "catalog/" + directory+'/'
-            prefix = "catalog/" + directory
+            prefix = "catalog/" + directory+"/"
 
         else:
             directory = settings.MEDIA_ROOT + "catalog/"
