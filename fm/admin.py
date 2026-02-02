@@ -130,7 +130,7 @@ class FaltuAdmin(admin.ModelAdmin):
                         }
                     )
         #print(imgs)
-        paginator = Paginator(merge pagesize)
+        paginator = Paginator(merge, pagesize)
         page_obj = paginator.get_page(page)
         #############parent url down
         purl = "?stuff=1"
