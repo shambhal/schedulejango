@@ -220,6 +220,7 @@ class FaltuAdmin(admin.ModelAdmin):
         return JsonResponse({"success": "File(s) deleted"})
 
     def upload_fm(self, request):
+        print("inuploadfm")
         directory = request.GET.get("directory", None)
 
         parent = ""
