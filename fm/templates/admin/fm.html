@@ -68,8 +68,8 @@
                 </span>
         
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="pp">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}" class="pp">last &raquo;</a>
+                    <a href="?page={{ page_obj.next_page_number }}" onclick="loadp('?page={{ page_obj.next_page_number }}')" class="pp">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" onclick="loadp('?page={{ page_obj.next_page_number }}')"class="pp">last &raquo;</a>
                 {% endif %}
             </span>
         </div>
