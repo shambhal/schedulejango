@@ -164,21 +164,35 @@ class DoctorAdmin(admin.ModelAdmin):
     def _save(self, request, form_url="", extra_context={}):
         img = request.POST.get("img", None)
         pimg = ImageTool.resize("placeholder.png", 100, 100)
-        if img != None:
+        #
+        # 
+        # 
+        # 
+        # 
+        # 
+        # 
+        # 
+        # 
+        # 
+        # print(img+" is the image")
+        if img != None and img !='':
             thumb = ImageTool.resize(request.POST["img"], 100, 100)
 
         else:
             img = None
+            #print("igm is none")
             thumb = ImageTool.resize("placeholder.png", 100, 100)
         form1 = DoctorForm1(request.POST)
         form2 = DoctorPForm(request.POST)
         form3 = DoctorTimingsForm(request.POST)
+        #form1.remove('img')
         if form1.is_valid() and form2.is_valid() and form3.is_valid():
             email = request.POST["email"]
+            #orm1.cleaned_data.pop('img', None)
             User = get_user_model()
             specific_user = User.objects.filter(email=email).exists()
             if specific_user:
-                messages.error("Email is not unique")
+                messages.error(request,"Email is not unique")
                 extra_content = {
                     "pimg": pimg,
                     "thumb": thumb,
@@ -191,6 +205,9 @@ class DoctorAdmin(admin.ModelAdmin):
             arr = request.POST["name"].split(" ")
             last_name = "" if len(arr) < 2 else arr[1]
             first_name = arr[0]
+            categories=form3.cleaned_data['categories']
+            form3.cleaned_data.pop('categories')
+
             combined_data = {
                 **form1.cleaned_data,
                 **form2.cleaned_data,
@@ -198,8 +215,10 @@ class DoctorAdmin(admin.ModelAdmin):
             }
             combined_data["first_name"] = first_name
             combined_data["last_name"] = last_name
-            combined_data["img"] = img
+            combined_data["image"] = img
             del combined_data["name"]
+            #del combined_data["img"]
+            #print(combined_data)
             try:
                 with transaction.atomic():
                     user = User.objects.create_user(
@@ -208,13 +227,17 @@ class DoctorAdmin(admin.ModelAdmin):
                         first_name=first_name,
                         last_name=last_name,
                     )
+                    #print(combined_data)
                     doc = Doctor(**combined_data)
                     # doc.save(commit=False)
                     # doc.categories.set([])
                     doc.user = user
+                    doc.image=img
                     doc.save()
+                    doc.categories.set(categories)
+                    
             except Exception as e:
-                messages.error("Error Occured while saving" + e)
+                messages.error(request,"Error Occured while saving" + str(e))
                 extra_content = {
                     "thumb": thumb,
                     "pimg": pimg,
@@ -225,7 +248,7 @@ class DoctorAdmin(admin.ModelAdmin):
                 }
                 return super().add_view(request, form_url, extra_content)
             messages.success(request, "Doctor saved successfully")
-            return redirect("../doctor/doctor")
+            return redirect(reverse("admin:doctor_doctor_changelist"))
 
     def add_view(self, request, form_url="", extra_context={}):
         if request.method == "POST":
@@ -233,7 +256,7 @@ class DoctorAdmin(admin.ModelAdmin):
             form2 = DoctorPForm(request.POST)
             form3 = DoctorTimingsForm(request.POST)
             if request.POST["img"] != None:
-                return self._save(request, form_url, extra_content)
+                return self._save(request, form_url, extra_context)
             else:
                 # when form is not valid
                 #

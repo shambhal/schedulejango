@@ -106,7 +106,7 @@ class FaltuAdmin(admin.ModelAdmin):
                         "href": reverse("admin:commonfilemanager")
                         + "?directory="
                         + name
-                        + url+"&k=2",
+                        + url+'&k=2',
                     }
                 )
             else:
@@ -142,11 +142,16 @@ class FaltuAdmin(admin.ModelAdmin):
 
         purl = reverse("admin:commonfilemanager") + purl
         rurl = purl
+        print(purl)
         if directory != None:
-            rurl = rurl + "&directory=" + directory+"&k=2"
+            rurl = rurl + "&directory=" + directory
+           
         if parent != "":
-            purl = purl + "&directory=" + parent+"&k=2"
-
+           
+           
+                  purl = purl + "&directory=" + parent
+                  purl = purl + "&k=2" if "&k=2" not in purl else purl
+        rurl = rurl + "&k=2" if "&k=2" not in rurl else rurl
         arr = {
             "page_obj": page_obj,
             "imgs": imgs,
@@ -197,12 +202,12 @@ class FaltuAdmin(admin.ModelAdmin):
                 #print(settings.MEDIA_ROOT+f1)
                 #print("here")
                 p=Path(settings.MEDIA_ROOT + f1)
-                print(p)
+                #print(p)
                 if(os.path.isfile(settings.MEDIA_ROOT+f1)) :
-                   print("this is file")
+                   #print("this is file")
                    os.remove(settings.MEDIA_ROOT + f1)
                 if p.is_dir() :
-                   print("this is dir")
+                   #print("this is dir")
                    os.rmdir(settings.MEDIA_ROOT + f1)   
           
         '''  
@@ -240,9 +245,9 @@ class FaltuAdmin(admin.ModelAdmin):
             return JsonResponse(err)
         else:
             # print("valid file")
-            fs = FileSystemStorage()
+            fs = FileSystemStorage(location=settings.MEDIA_ROOT)
             nf = self.rename(name, ext)
-            filename = fs.save(directory + nf, file)
+            filename = fs.save(prefix+nf, file)
             print(filename)
             return JsonResponse({"success": 1})
         return HttpResponse(" is directory")

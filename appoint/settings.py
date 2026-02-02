@@ -28,12 +28,16 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-jd$y&!87ppw8l#nrz+*12x93t4n*s5+g9f1^^#m!q+rce(&f*f"
+SECRET_KEY = env("SECRET_KEY",default="django-insecure-jd$y&!87ppw8l#nrz+*12x93t4n*s5+g9f1^^#m!q+rce(&f*f")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG =env("DEBUG")
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in env("ALLOWED_HOSTS", default="").split(",")
+    if h.strip()
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
@@ -214,7 +218,7 @@ LOGGING = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/assets/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

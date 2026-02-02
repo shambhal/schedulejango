@@ -49,7 +49,7 @@ class ImageTool:
         # print(fpath)
         ow, oh = Image.open(fpath).size
         if not os.path.exists(DIR_IMAGE + image_new):
-            print("not cached")
+            #print("not cached")
             # print(DIR_IMAGE,image_new)
             # print("dirs")
             # print(dirs)

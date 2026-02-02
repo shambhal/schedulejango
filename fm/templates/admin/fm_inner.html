@@ -3,7 +3,7 @@
       
       
         <div class="row">
-          <div class="col-sm-5"><a href="{{ purl }}&k=2" data-toggle="tooltip" title="{{ button_parent }}" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="{{ rurl }}&k=2" data-toggle="tooltip" title="{{ button_refresh }}" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+          <div class="col-sm-5"><a href="{{purl}}{% if  not "&k=" in purl %}&k=2{% endif %}" data-toggle="tooltip" title="{{ button_parent }}" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="{{ rurl }}&k=2" data-toggle="tooltip" title="{{ button_refresh }}" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
             <button type="button" data-toggled="tooltip" title="{{ button_upload }}" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
             <button type="button" data-toggled="tooltip" title="{{ button_folder }}" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
             <button type="button" data-toggled="tooltip" title="{{ button_delete }}" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -26,7 +26,7 @@
           {% for  file in imgs %}
              <div class='col-sm-4 col-xs-6 text-center'>
                {% if file.type == 'directory'%}
-               <div class="text-center"><a hreff="javasript:void(0)" href={{ file.href }}" onclickk="loadfolder()" class="directory" style="vertical-align: middle;"><i class="fa fa-folder fa-5x"></i></a></div>
+               <div class="text-center"><a hreff="javasript:void(0)" href="{{ file.href }}" onclickk="loadfolder()" class="directory" style="vertical-align: middle;"><i class="fa fa-folder fa-5x"></i></a></div>
               <label>
                <input type="checkbox" name="path" value="{{ file.name }}" />
                 {{ file.name }}
