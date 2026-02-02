@@ -226,7 +226,7 @@ class FaltuAdmin(admin.ModelAdmin):
         parent = ""
         if directory != None and directory != "":
             directory = settings.MEDIA_ROOT + "catalog/" + directory+'/'
-            prefix = "catalog/" 
+            prefix = "catalog/" + directory
 
         else:
             directory = settings.MEDIA_ROOT + "catalog/"
