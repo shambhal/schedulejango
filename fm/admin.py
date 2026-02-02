@@ -239,17 +239,18 @@ class FaltuAdmin(admin.ModelAdmin):
             name = jarr[0]
             ext = jarr[1]
             ext = ext.lower()
-            print(ext)
+            #print(ext)
         arr = ["jpg", "jpeg", "png", "gif"]
         if ext not in arr:
             err = {"error": "Invalid File uuPloaded"}
             return JsonResponse(err)
         else:
             # print("valid file")
-            fs = FileSystemStorage(location=settings.MEDIA_ROOT)
+            fs = FileSystemStorage()
             nf = self.rename(name, ext)
+            print(f"{prefix} is prefix and {nf} is nf")
             filename = fs.save(prefix+nf, file)
-            print(filename)
+            print(f" filename is {filename}")
             return JsonResponse({"success": 1})
         return HttpResponse(" is directory")
 
