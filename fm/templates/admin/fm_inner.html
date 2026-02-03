@@ -3,7 +3,7 @@
       
       
         <div class="row">
-          <div class="col-sm-5"><a href="{{purl}}{% if  not "&k=" in purl %}&k=2{% endif %}" data-toggle="tooltip" title="{{ button_parent }}" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="{{ rurl }}&k=2" data-toggle="tooltip" title="{{ button_refresh }}" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
+          <div class="col-sm-5"><a href="{{purl}}{% if  not "&k=" in purl %}&k=2{% endif %}" data-toggle="tooltip" title="{{ button_parent }}" id="button-parent" class="btn btn-default"><i class="fa fa-level-up"></i></a> <a href="{{ rurl }}&k=2&page={{page}}" data-toggle="tooltip" title="{{ button_refresh }}" id="button-refresh" class="btn btn-default"><i class="fa fa-refresh"></i></a>
             <button type="button" data-toggled="tooltip" title="{{ button_upload }}" id="button-upload" class="btn btn-primary"><i class="fa fa-upload"></i></button>
             <button type="button" data-toggled="tooltip" title="{{ button_folder }}" id="button-folder" class="btn btn-default"><i class="fa fa-folder"></i></button>
             <button type="button" data-toggled="tooltip" title="{{ button_delete }}" id="button-delete" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -51,8 +51,8 @@
           <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a hreff="?page=1"  href="javascript:void(0)" onclick="loadPage('{{rurl}}&page=1')" classs="pp">&laquo; first</a>
+                    <a hreff="?page={{ page_obj.previous_page_number }}"  href="javascript:void(0)"  onclick="loadPage('{{rurl}}&page={{ page_obj.previous_page_number }}')" classs="pp"  href="javascript:void(0)" class="pp">previous</a>
                 {% endif %}
         
                 <span class="current">
@@ -60,12 +60,11 @@
                 </span>
         
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}">next</a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    <a hreff="?page={{ page_obj.next_page_number }}"  href="javascript:void(0)" onclick="loadPage('{{rurl}}&page={{ page_obj.next_page_number }}')" classs="pp">next</a>
+                    <a hreff="?page={{ page_obj.paginator.num_pages }}"  href="javascript:void(0)" onclick="loadPage('{{rurl}}?&page={{ page_obj.next_page_number }}')" classs="pp">last &raquo;</a>
                 {% endif %}
             </span>
         </div>
-
 
 
   

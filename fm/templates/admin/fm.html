@@ -59,8 +59,8 @@
           <div class="pagination">
             <span class="step-links">
                 {% if page_obj.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="pp">previous</a>
+                    <a hreff="?page=1"  href="javascript:void(0)" onclick="loadPage('{{rurl}}&page=1')" classs="pp">&laquo; first</a>
+                    <a hreff="?page={{ page_obj.previous_page_number }}"  href="javascript:void(0)"  onclick="loadPage('{{rurl}}&page={{ page_obj.previous_page_number }}')" classs="pp"  href="javascript:void(0)" class="pp">previous</a>
                 {% endif %}
         
                 <span class="current">
@@ -68,8 +68,8 @@
                 </span>
         
                 {% if page_obj.has_next %}
-                    <a hreff="?page={{ page_obj.next_page_number }}" onclick="loadp('?page={{ page_obj.next_page_number }}')" class="pp">next</a>
-                    <a hreff="?page={{ page_obj.paginator.num_pages }}" onclick="loadp('?page={{ page_obj.next_page_number }}')"class="pp">last &raquo;</a>
+                    <a hreff="?page={{ page_obj.next_page_number }}"  href="javascript:void(0)" onclick="loadPage('{{rurl}}&page={{ page_obj.next_page_number }}')" classs="pp">next</a>
+                    <a hreff="?page={{ page_obj.paginator.num_pages }}"  href="javascript:void(0)" onclick="loadPage('{{rurl}}?&page={{ page_obj.next_page_number }}')"classs="pp">last &raquo;</a>
                 {% endif %}
             </span>
         </div>
@@ -114,8 +114,8 @@ $('#modal-image').on('click', '#button-parent', function (e) {
 
 function loadPage(url)
 {
-
-
+//alert(url);
+  $('#modal-image .modal-body').load(url);
 
 }
 
@@ -153,11 +153,7 @@ function loadPage(url)
 
   $('#modal-image .modal-body').load($(this).attr('href'));
    });
-    $('#modal-image').on('click','.pp', function() {
-      e.preventDefault();
-$('#modal-image .modal-body').load($(this).attr('href'));
-
-    })
+    
     $('#modal-image').on('click','#button-upload', function() {
       $('#form-upload').remove();
        var directory=$('#input-directory').val();

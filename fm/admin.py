@@ -83,7 +83,7 @@ class FaltuAdmin(admin.ModelAdmin):
         #print(files)        
         merge = directories + files
         total = len(merge)
-        start = (page - 1) * pagesize
+        start = (int(page) - 1) * pagesize
         end = start + pagesize
         images = merge[start:end]
         # print(images)
@@ -152,8 +152,11 @@ class FaltuAdmin(admin.ModelAdmin):
                   purl = purl + "&directory=" + parent
                   purl = purl + "&k=2" if "&k=2" not in purl else purl
         rurl = rurl + "&k=2" if "&k=2" not in rurl else rurl
+        rpurl=rurl
+        
         arr = {
             "page_obj": page_obj,
+            'page':page,
             "imgs": imgs,
             "target": target,
             "rurl": rurl,
