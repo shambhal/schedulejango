@@ -228,7 +228,7 @@ class FaltuAdmin(admin.ModelAdmin):
 
         parent = ""
         if directory != None and directory != "":
-            directory = settings.MEDIA_ROOT + "catalog/" + directory
+            directory = settings.MEDIA_ROOT + "catalog/" + directory+"/"
             prefix = "catalog/" + directory+'/'
 
         else:
@@ -253,7 +253,7 @@ class FaltuAdmin(admin.ModelAdmin):
             nf = self.rename(name, ext)
             print("he shona")
             print(f"{prefix} is prefix and {nf} is nf")
-            filename = fs.save(prefix+nf, file)
+            filename = fs.save(prefix+"/"+nf, file)
             print(f" filename is {filename}")
             return JsonResponse({"success": 1})
         return HttpResponse(" is directory")
