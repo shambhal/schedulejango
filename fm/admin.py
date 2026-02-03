@@ -70,7 +70,7 @@ class FaltuAdmin(admin.ModelAdmin):
             prefix = "catalog/"
      
         page = request.GET.get("page", 1)
-        if not page:
+        if not page or page=='':
             page=1
 
         directories = []
