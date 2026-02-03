@@ -33,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY",default="django-insecure-jd$y&!87ppw8l#nrz+*12x93t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =env("DEBUG")
 
-DEBUG=True
+#DEBUG=True
 
 
 
