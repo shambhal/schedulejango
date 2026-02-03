@@ -33,7 +33,7 @@ SECRET_KEY = env("SECRET_KEY",default="django-insecure-jd$y&!87ppw8l#nrz+*12x93t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =env("DEBUG")
 
-
+DEBUG=True
 
 
 
@@ -44,11 +44,13 @@ ALLOWED_HOSTS = [
 ]
 
 MEDIA_URL = "/schedule/media/"
+#MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_ICACHE = os.path.join(BASE_DIR, "media/cache/")
 MEDIA_STATIC = os.path.join(BASE_DIR, "media/")
-ICACHE_URL = MEDIA_IURL = "/schedule/media/cache/"
+#ICACHE_URL = MEDIA_IURL = "/schedule/media/cache/"
+ICACHE_URL = MEDIA_IURL = "/media/cache/"
 # Application definition
 
 INSTALLED_APPS = [
