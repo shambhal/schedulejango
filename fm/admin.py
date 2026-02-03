@@ -70,6 +70,8 @@ class FaltuAdmin(admin.ModelAdmin):
             prefix = "catalog/"
      
         page = request.GET.get("page", 1)
+        if not page:
+            page=1
 
         directories = []
         files = []
@@ -228,7 +230,7 @@ class FaltuAdmin(admin.ModelAdmin):
 
         parent = ""
         if directory != None and directory != "":
-            directory = settings.MEDIA_ROOT + "catalog/" + directory+"/"
+            directory = settings.MEDIA_ROOT + "catalog/" + directory+'/'0
             prefix = "catalog/" + directory+'/'
 
         else:
