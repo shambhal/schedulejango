@@ -106,7 +106,7 @@ class FaltuAdmin(admin.ModelAdmin):
                         "thumb": "",
                         "type": "directory",
                         "name": name,
-                        "path": name,
+                        "path":prefix+ name,
                         "href": reverse("admin:commonfilemanager")
                         + "?directory="
                         + name
@@ -207,7 +207,7 @@ class FaltuAdmin(admin.ModelAdmin):
 
         for f1 in path1:
             # normalize checkbox value
-            f1 = "catalog/"+f1.strip().lstrip("/")
+            f1 = f1.strip().lstrip("/")
 
             p = (media_root / f1).resolve()
             #print("Deleting:", p)
