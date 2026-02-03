@@ -33,13 +33,17 @@ SECRET_KEY = env("SECRET_KEY",default="django-insecure-jd$y&!87ppw8l#nrz+*12x93t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =env("DEBUG")
 
+
+
+
+
 ALLOWED_HOSTS = [
     h.strip()
     for h in env("ALLOWED_HOSTS", default="").split(",")
     if h.strip()
 ]
 
-MEDIA_URL = "/media/"
+MEDIA_URL = "/schedule/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_ICACHE = os.path.join(BASE_DIR, "media/cache/")
