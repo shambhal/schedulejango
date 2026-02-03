@@ -251,6 +251,7 @@ class FaltuAdmin(admin.ModelAdmin):
             print("valid file")
             fs = FileSystemStorage()
             nf = self.rename(name, ext)
+            print("he shona")
             print(f"{prefix} is prefix and {nf} is nf")
             filename = fs.save(prefix+nf, file)
             print(f" filename is {filename}")
