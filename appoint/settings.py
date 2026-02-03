@@ -48,7 +48,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_ICACHE = os.path.join(BASE_DIR, "media/cache/")
 MEDIA_STATIC = os.path.join(BASE_DIR, "media/")
-ICACHE_URL = MEDIA_IURL = "/media/cache/"
+ICACHE_URL = MEDIA_IURL = "/schedule/media/cache/"
 # Application definition
 
 INSTALLED_APPS = [
